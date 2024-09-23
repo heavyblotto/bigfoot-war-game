@@ -1,0 +1,135 @@
+{
+  "rules": [
+    {
+      "name": "Component Directory Structure",
+      "description": "Ensure all reusable components are placed in the src/components directory.",
+      "pattern": "src/components/**/*.js",
+      "message": "Reusable components should be placed in the src/components directory. See [conventions.md](docs/conventions.md) for details."
+    },
+    {
+      "name": "Page Directory Structure",
+      "description": "Ensure all page components are placed in the src/app directory.",
+      "pattern": "src/app/**/*.js",
+      "message": "Page components should be placed in the src/app directory. See [conventions.md](docs/conventions.md) for details."
+    },
+    {
+      "name": "Global Styles",
+      "description": "Ensure global styles are defined in src/app/globals.css.",
+      "pattern": "src/app/globals.css",
+      "message": "Global styles should be defined in src/app/globals.css. See [conventions.md](docs/conventions.md) for details."
+    },
+    {
+      "name": "Configuration Files",
+      "description": "Ensure configuration files are in the root directory.",
+      "pattern": [
+        "jsconfig.json",
+        "next.config.mjs",
+        "postcss.config.mjs",
+        ".eslintrc.json"
+      ],
+      "message": "Configuration files should be in the root directory. See [conventions.md](docs/conventions.md) for details."
+    },
+    {
+      "name": "CSS Class Naming",
+      "description": "Ensure CSS classes follow BEM naming convention.",
+      "pattern": "**/*.css",
+      "message": "CSS classes should follow BEM naming convention. See [conventions.md](docs/conventions.md) for details."
+    },
+    {
+      "name": "Import Paths",
+      "description": "Ensure import paths use aliases defined in jsconfig.json.",
+      "pattern": "**/*.js",
+      "message": "Import paths should use aliases defined in jsconfig.json. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "^import .* from ['\"]@/",
+        "message": "Use aliases defined in jsconfig.json for import paths. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Tailwind CSS Usage",
+      "description": "Ensure Tailwind CSS classes are used for styling.",
+      "pattern": "**/*.js",
+      "message": "Use Tailwind CSS classes for styling. See [conventions.md](docs/conventions.md) for details."
+    },
+    {
+      "name": "Data and Content Reference Files",
+      "description": "Ensure all data and content used in the app are placed into reference files.",
+      "pattern": "**/*.js",
+      "message": "Data and content should be placed in reference files. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "import .* from ['\"]@/data/",
+        "message": "Data and content should be imported from reference files in the @/data directory. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Internationalization",
+      "description": "Ensure all text strings are internationalized.",
+      "pattern": "**/*.js",
+      "message": "Text strings should be internationalized. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "import .* from ['\"]@/locales/",
+        "message": "Text strings should be imported from internationalization files in the @/locales directory. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Chakra UI Usage",
+      "description": "Ensure Chakra UI components are used for building accessible and responsive user interfaces.",
+      "pattern": "**/*.js",
+      "message": "Use Chakra UI components for building accessible and responsive user interfaces. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "import .* from ['\"]@chakra-ui/react['\"]",
+        "message": "Use Chakra UI components for building accessible and responsive user interfaces. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Zustand Usage",
+      "description": "Ensure Zustand is used for lightweight state management.",
+      "pattern": "src/store/**/*.js",
+      "message": "Use Zustand for lightweight state management. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "import create from ['\"]zustand['\"]",
+        "message": "Use Zustand for lightweight state management. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "React Hook Form Usage",
+      "description": "Ensure React Hook Form is used for efficient form state and validation management.",
+      "pattern": "**/*.js",
+      "message": "Use React Hook Form for efficient form state and validation management. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "import .* from ['\"]react-hook-form['\"]",
+        "message": "Use React Hook Form for efficient form state and validation management. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Framer Motion Usage",
+      "description": "Ensure Framer Motion is used for smooth animations and transitions.",
+      "pattern": "**/*.js",
+      "message": "Use Framer Motion for smooth animations and transitions. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "import .* from ['\"]framer-motion['\"]",
+        "message": "Use Framer Motion for smooth animations and transitions. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "React Query Usage",
+      "description": "Ensure React Query is used for optimized data fetching, caching, and synchronization.",
+      "pattern": "**/*.js",
+      "message": "Use React Query for optimized data fetching, caching, and synchronization. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "import .* from ['\"]@tanstack/react-query['\"]",
+        "message": "Use React Query for optimized data fetching, caching, and synchronization. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "React Icons Usage",
+      "description": "Ensure React Icons are used for a comprehensive set of icons in reusable UI components.",
+      "pattern": "**/*.js",
+      "message": "Use React Icons for a comprehensive set of icons in reusable UI components. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "import .* from ['\"]react-icons['\"]",
+        "message": "Use React Icons for a comprehensive set of icons in reusable UI components. See [conventions.md](docs/conventions.md) for details."
+      }
+    }
+  ]
+}
