@@ -7,10 +7,10 @@
       "message": "Reusable components should be placed in the src/components directory. See [conventions.md](docs/conventions.md) for details."
     },
     {
-      "name": "Page Directory Structure",
-      "description": "Ensure all page components are placed in the src/app directory.",
-      "pattern": "src/app/**/*.js",
-      "message": "Page components should be placed in the src/app directory. See [conventions.md](docs/conventions.md) for details."
+      "name": "App Router Structure",
+      "description": "Ensure all page components are placed in the src/app directory and follow the App Router conventions.",
+      "pattern": "src/app/**/*.{js,jsx,ts,tsx}",
+      "message": "Page components should be placed in the src/app directory and follow App Router conventions. See [conventions.md](docs/conventions.md) for details."
     },
     {
       "name": "Global Styles",
@@ -37,12 +37,12 @@
     },
     {
       "name": "Import Paths",
-      "description": "Ensure import paths use aliases defined in jsconfig.json.",
-      "pattern": "**/*.js",
-      "message": "Import paths should use aliases defined in jsconfig.json. See [conventions.md](docs/conventions.md) for details.",
+      "description": "Ensure import paths use aliases defined in jsconfig.json and follow App Router conventions.",
+      "pattern": "**/*.{js,jsx,ts,tsx}",
+      "message": "Import paths should use aliases defined in jsconfig.json and follow App Router conventions. See [conventions.md](docs/conventions.md) for details.",
       "regex": {
-        "pattern": "^import .* from ['\"]@/",
-        "message": "Use aliases defined in jsconfig.json for import paths. See [conventions.md](docs/conventions.md) for details."
+        "pattern": "^import .* from ['\"](@/|next/|react)",
+        "message": "Use aliases defined in jsconfig.json for import paths and follow App Router conventions. See [conventions.md](docs/conventions.md) for details."
       }
     },
     {
@@ -208,6 +208,24 @@
       "description": "Ensure the development guide is updated when development processes change.",
       "pattern": "**/*.{js,jsx,ts,tsx,json,yml,yaml}",
       "message": "Update /docs/development-guide.md if this change affects the development process."
+    },
+    {
+      "name": "Layout Components",
+      "description": "Ensure layout components are properly structured for App Router.",
+      "pattern": "src/app/**/layout.{js,jsx,ts,tsx}",
+      "message": "Layout components should follow App Router conventions. See [conventions.md](docs/conventions.md) for details."
+    },
+    {
+      "name": "Page Components",
+      "description": "Ensure page components are properly structured for App Router.",
+      "pattern": "src/app/**/page.{js,jsx,ts,tsx}",
+      "message": "Page components should follow App Router conventions. See [conventions.md](docs/conventions.md) for details."
+    },
+    {
+      "name": "Route Groups",
+      "description": "Ensure route groups are properly used in the App Router structure.",
+      "pattern": "src/app/**/(*)/**",
+      "message": "Route groups should be properly structured. See [conventions.md](docs/conventions.md) for details."
     }
   ]
 }

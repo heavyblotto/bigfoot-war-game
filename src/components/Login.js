@@ -42,8 +42,22 @@ const Login = ({ setUser, onCancel }) => {
               bg="white"
             />
           </FormControl>
-          <Button type="submit">Login</Button>
-          <Button type="button" onClick={handleTestUserLogin}>Login as Test User</Button>
+          <Button
+            colorScheme="blue"
+            width="full"
+            mt={4}
+            type="submit"
+          >
+            Login
+          </Button>
+          <Button
+            colorScheme="green"
+            width="full"
+            mt={2}
+            onClick={handleTestUserLogin}
+          >
+            Login as Test User
+          </Button>
         </VStack>
       </form>
     </VStack>

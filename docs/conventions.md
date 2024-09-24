@@ -101,3 +101,52 @@ export default function Button({ children, onClick }) {
 - Utilize Vercel's environment variables for sensitive information
 - Follow Vercel's naming conventions for serverless functions
 - Use Vercel's preview deployments for testing changes before merging to main
+
+## UI Design Conventions
+
+When creating or updating UI elements in the game, follow these guidelines:
+
+1. Use Chakra UI components for consistent styling and responsiveness.
+
+2. Button styling:
+   - Use `size="lg"` for consistent button sizes
+   - Set `width="full"` for full-width buttons
+   - Apply colorful gradients using `bgGradient` prop
+   - Implement hover effects with `_hover` prop
+   - Ensure white text color for better contrast
+
+3. Layout:
+   - Use `VStack` for vertical layouts with consistent spacing
+   - Wrap content in `Box` components with custom styling
+
+4. Typography:
+   - Use the "Press Start 2P" font for headings and button text
+   - Apply appropriate text colors (usually white) for good contrast
+
+5. Animations:
+   - Implement subtle animations for interactive elements
+   - Use Chakra UI's built-in transition props or Framer Motion for more complex animations
+
+6. Consistency:
+   - Maintain a consistent color scheme across related UI elements
+   - Use similar styling for buttons with similar functions
+
+Example button styling:
+
+```javascript
+<Button
+  size="lg"
+  width="full"
+  colorScheme="blue"
+  bgGradient="linear(to-r, blue.400, blue.600)"
+  _hover={{
+    bgGradient: "linear(to-r, blue.500, blue.700)",
+  }}
+  onClick={handleAction}
+  color="white"
+>
+  Button Text
+</Button>
+```
+
+Follow these conventions to ensure a cohesive and visually appealing user interface throughout the game.
