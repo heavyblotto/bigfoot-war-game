@@ -8,11 +8,13 @@ This document outlines the features of the Bigfoot War project, including both f
    - Set up the basic Next.js application structure
    - Configure routing for different game screens
    - Implement server-side rendering for improved performance
+   - Status: Completed
 
 2. **User Authentication**
    - Implement user registration and login functionality
    - Secure user data storage and password hashing
    - Create user profiles with customizable settings
+   - Status: Not Started
 
 3. **Game Lobby**
    - Develop a central hub for players to access different game modes
@@ -146,6 +148,15 @@ This document outlines the features of the Bigfoot War project, including both f
     - Implement unit testing for core game logic
     - Develop integration tests for key features
     - Create an automated testing pipeline for continuous integration
+
+## Deployment Features
+
+31. **Vercel Integration**
+    - Implement automatic deployments from GitHub
+    - Set up preview deployments for pull requests
+    - Configure Vercel's serverless functions for backend logic
+    - Utilize Vercel's environment variable management
+    - Status: In Progress
 
 This feature list provides a comprehensive overview of the Bigfoot War project, covering both functional and non-functional aspects. The order of implementation should generally follow the numbering, as later features often depend on earlier ones. However, some features can be developed in parallel, especially those in different categories (e.g., UI/UX features can be worked on alongside core game features).
 

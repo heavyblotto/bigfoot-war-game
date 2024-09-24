@@ -1,7 +1,7 @@
 # Project Architecture
 
 ## Overview
-This project is a Next.js application that leverages several modern libraries and tools to create a robust, scalable, and maintainable codebase for the Bigfoot War game.
+This project is a Next.js application that leverages several modern libraries and tools to create a robust, scalable, and maintainable codebase for the Bigfoot War game. It is deployed and hosted on Vercel for optimal performance and ease of management.
 
 ## Tech Stack
 - **Frontend Framework**: Next.js
@@ -11,6 +11,7 @@ This project is a Next.js application that leverages several modern libraries an
 - **Form Handling**: React Hook Form
 - **Animations**: Framer Motion
 - **Icons**: React Icons
+- **Deployment Platform**: Vercel
 
 ## Project Structure
 - `src/`
@@ -34,7 +35,27 @@ This project is a Next.js application that leverages several modern libraries an
 (To be implemented)
 
 ## Deployment
-(To be determined)
+The project is deployed on Vercel, which provides the following benefits:
+- Automatic deployments triggered by pushes to the main branch
+- Preview deployments for pull requests
+- Serverless functions for backend logic
+- Environment variable management
+- Custom domain setup
+- Analytics and monitoring
+- Global CDN for improved performance
+
+### Deployment Process
+1. Code is pushed to the GitHub repository
+2. Vercel automatically detects changes and initiates the build process
+3. Next.js build is executed (`next build`)
+4. Vercel deploys the built assets to its global edge network
+5. The new version of the site is instantly available worldwide
+
+### Environment Variables
+Sensitive configuration values are stored as environment variables in the Vercel dashboard, ensuring they're kept secure and separate from the codebase.
+
+### Monitoring and Analytics
+Vercel provides built-in analytics and monitoring tools to track the application's performance, user behavior, and overall health.
 
 ## Example Usage
 ### Adding a New Component
@@ -113,6 +134,33 @@ const MyNewIconButton = () => {
 export default MyNewIconButton; 
 ```
 
+## Vercel-specific Configuration
+The `next.config.mjs` file includes Vercel-specific optimizations:
+
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ['your-image-domain.com'], // Add any domains you're loading images from
+  },
+};
+
+export default nextConfig;
+```
+
+This configuration enables React strict mode, uses SWC for minification, and sets up image optimization for any external domains used for images.
 
 
+## API Architecture
 
+Our Next.js API routes are deployed as serverless functions on Vercel. This provides several benefits:
+
+- Automatic scaling: Each API route scales independently based on demand.
+- Isolation: API routes are isolated, improving security and reliability.
+- Easy deployment: API routes are automatically deployed with the rest of the Next.js application.
+- Environment variable support: Sensitive information can be securely stored and accessed.
+- Performance optimization: Vercel optimizes API routes for low latency and fast cold starts.
+
+API routes are located in the `src/app/api` directory and follow Next.js 13+ conventions for routing and handling requests.

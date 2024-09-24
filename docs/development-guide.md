@@ -32,3 +32,13 @@
 - [Chakra UI Documentation](https://chakra-ui.com/docs/getting-started)
 - [Zustand Documentation](https://github.com/pmndrs/zustand)
 - [React Query Documentation](https://tanstack.com/query/latest/docs/react/overview)
+
+## Vercel Deployment
+
+1. Sign up for a Vercel account if you haven't already
+2. Connect your GitHub repository to Vercel
+3. Configure your project settings in the Vercel dashboard
+4. Set up environment variables for different deployment environments
+5. Deploy your application using the Vercel CLI or GitHub integration
+
+For more details, refer to the [Vercel documentation](https://vercel.com/docs).
