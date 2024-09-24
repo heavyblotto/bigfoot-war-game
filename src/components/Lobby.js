@@ -37,21 +37,15 @@ const Lobby = ({ user, setUser }) => {
       default:
         return (
           <VStack spacing={4}>
-            <Tooltip label={`Welcome to the Lobby, ${user.username}!`} aria-label="Full welcome message">
-              <Text
-                fontSize="xl"
-                fontWeight="bold"
-                color="white"
-                mb={4}
-                fontFamily='"Press Start 2P", sans-serif'
-                maxWidth="100%"
-                overflow="hidden"
-                textOverflow="ellipsis"
-                whiteSpace="nowrap"
-              >
-                Welcome, {user.username}!
-              </Text>
-            </Tooltip>
+            <Text
+              fontSize="xl"
+              fontWeight="bold"
+              color="white"
+              mb={4}
+              fontFamily='"Press Start 2P", sans-serif'
+            >
+              Welcome, {user.username}!
+            </Text>
             <Button
               size="lg"
               width="full"
