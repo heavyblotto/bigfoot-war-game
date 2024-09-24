@@ -75,7 +75,7 @@ const Home = () => {
               )}
             </>
           ) : (
-            <Lobby user={user} />
+            <Lobby user={user} setUser={setUser} />
           )}
         </Box>
       </VStack>
