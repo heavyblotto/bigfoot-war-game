@@ -1,7 +1,7 @@
-import React from 'react';
+'use client';
 
-const Button = ({ children, ...props }) => {
-  return <button {...props}>{children}</button>;
-};
+import { Button as ChakraButton } from '@chakra-ui/react';
 
-export default Button;
+export function Button({ children, ...props }) {
+  return <ChakraButton {...props}>{children}</ChakraButton>;
+}

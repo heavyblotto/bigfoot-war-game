@@ -94,3 +94,10 @@ export default function Button({ children, onClick }) {
 - Use feature branches for new features or bug fixes
 - Write clear, concise commit messages
 - Create pull requests for code review before merging to main branch
+
+## Vercel-specific Conventions
+
+- Use `vercel.json` for Vercel-specific configurations when needed
+- Utilize Vercel's environment variables for sensitive information
+- Follow Vercel's naming conventions for serverless functions
+- Use Vercel's preview deployments for testing changes before merging to main
