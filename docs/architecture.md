@@ -1,52 +1,40 @@
 # Project Architecture
 
 ## Overview
-This project is a Next.js application that leverages several modern libraries and tools to create a robust, scalable, and maintainable codebase. The application is structured to ensure clear separation of concerns, ease of development, and adherence to best practices.
+This project is a Next.js application that leverages several modern libraries and tools to create a robust, scalable, and maintainable codebase for the Bigfoot War game.
 
-## Components
-- **Button**: A reusable button component.
-- **AnimatedBox**: A box component with animations using Framer Motion.
-- **MyForm**: A form component utilizing React Hook Form for state and validation management.
-- **MyIconButton**: An icon button component using Chakra UI and React Icons.
+## Tech Stack
+- **Frontend Framework**: Next.js
+- **UI Library**: Chakra UI
+- **State Management**: Zustand
+- **Data Fetching**: React Query
+- **Form Handling**: React Hook Form
+- **Animations**: Framer Motion
+- **Icons**: React Icons
+
+## Project Structure
+- `src/`
+  - `components/`: Reusable UI components
+  - `app/`: Page components and routing
+  - `store/`: Zustand stores for state management
+  - `data/`: JSON files for game data (e.g., bigfoots.json)
+  - `styles/`: Global styles and Chakra UI theme customization
 
 ## Data Flow
-The data flow in the project is managed using Zustand for state management and React Query for data fetching, caching, and synchronization. Zustand provides a simple and scalable way to manage local state, while React Query handles server state efficiently.
+- Local state managed by Zustand
+- Server state and API calls handled by React Query
+- Form state managed by React Hook Form
 
-## Libraries
+## Conventions
+- Component naming: PascalCase
+- File naming: kebab-case
+- CSS: Chakra UI props and Tailwind CSS classes
 
-### Chakra UI
-Chakra UI is used for building accessible and responsive user interfaces. It provides a set of components that follow best practices for accessibility and design.
+## Testing Strategy
+(To be implemented)
 
-### Zustand
-Zustand is used for lightweight state management. It provides a simple and scalable way to manage state in the application.
-
-### React Hook Form
-React Hook Form is used for efficient form state and validation management. It provides a performant and easy-to-use API for handling form inputs and validation.
-
-### Framer Motion
-Framer Motion is used for smooth animations and transitions. It provides a powerful and flexible API for creating animations and transitions in the application.
-
-### React Query
-React Query is used for optimized data fetching, caching, and synchronization. It provides a set of hooks for managing server state in the application.
-
-### React Icons
-React Icons provides a comprehensive set of icons for reusable UI components. It includes a wide range of icons from popular icon libraries.
-
-## Directory Structure
-- **src/components**: Contains all reusable components.
-- **src/app**: Contains all page components and global styles.
-- **src/store**: Contains Zustand stores for state management.
-- **src/data**: Contains reference files for data and content.
-- **src/locales**: Contains files for internationalization.
-
-## Configuration
-- **jsconfig.json**: Defines import path aliases.
-- **next.config.mjs**: Configuration for Next.js.
-- **postcss.config.mjs**: Configuration for PostCSS.
-- **.eslintrc.json**: Configuration for ESLint.
-
-## Styling
-- **Tailwind CSS**: Used for styling with utility-first classes. Configured in `tailwind.config.js` and used in `src/app/globals.css`.
+## Deployment
+(To be determined)
 
 ## Example Usage
 ### Adding a New Component

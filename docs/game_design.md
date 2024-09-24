@@ -44,21 +44,14 @@ The game is designed to be accessible to new players while providing enough comp
 
 ## Game Mechanics
 
-### UX and UI
-- The overall theme is heavily inspired by a slot machine.
-- The game should be easy to understand and play.
-- The game should have a simple and clean UI.
-- The game should have a menu system with options to start a new game, view the rules, and view the credits.
-- The game should have a settings menu to adjust the game's settings.
-- The game should have a help menu to explain how to play the game.
-- The game should have a credits menu to explain the creators of the game.
-- The game should have a pause menu to pause the game.
-
 ### Core Gameplay Loop
 1. User account creation and login (to store progress)
 2. Game lobby navigation
-3. Character selection or creation
+3. Bigfoot selection (available types and unlocks based on progress)
 4. Opponent matching based on character level
+  - Player can pick an opponent from the list of available opponents.
+  - Opponents are chosen randomly from the available list.
+  - The difficulty of the opponent is determined by the player's level.
 5. Match gameplay:
    - Round-based card playing
    - Betting system per round
@@ -71,7 +64,7 @@ The game is designed to be accessible to new players while providing enough comp
 8. Return to lobby
 
 ### Additional Features
-- Character progression and unlocks
+- Player progression and unlocks
 - Inventory management
 - Shop for item and card purchases
 - Achievements system
@@ -79,6 +72,18 @@ The game is designed to be accessible to new players while providing enough comp
 - Game settings customization
 - Tutorial and practice mode
 - Real-time match log
+
+### Player Progression and Achievements
+- Players can progress by winning matches and gaining experience points (XP).
+- Players can unlock new bigfoots and abilities.
+- Players can earn achievements for completing certain tasks.
+- Players can view their win history, achievements, and player statistics.
+
+### Opponents
+- AI characters with different difficulty levels.
+- Opponents are chosen randomly from the available list.
+- The difficulty of the opponent is determined by the player's level.
+- AI is implemented using a state machine.
 
 ### Status Effects
 Status effects add a layer of strategy to combat:
@@ -104,6 +109,12 @@ Status effects add a layer of strategy to combat:
 
 Status effects generally last 1-3 rounds and can be applied through cards, Bigfoot abilities, or items. Players must use them strategically to gain advantages in combat.
 
+## Player account
+- Player account creation and login (to store progress)
+- Player profile with win history, achievements, and customizable settings
+- Player inventory for storing cards, items, and equipment 
+- Player stats and progress tracking
+
 ## Characters and Classes
 
 ### Player Character
@@ -112,7 +123,13 @@ Status effects generally last 1-3 rounds and can be applied through cards, Bigfo
 ### Non-Player Characters (NPCs)
 - AI bigfoot characters
 
-### Classes
+### Bigfoot Properties
+- Luck
+- Hit Points (HP)
+- Defense Points (DP)
+- Experience Points (XP)
+
+### Types
 1. **Dwarf**: Lucky, potentially resistant to certain status effects
 2. **Bigfoot**: Balanced, with a mix of offensive and defensive abilities
 3. **Giant**: Strong, with powerful attacks and potential to inflict status effects
@@ -125,7 +142,7 @@ Status effects generally last 1-3 rounds and can be applied through cards, Bigfo
 ## Game Rules
 
 ### War Rules
-1. 52 cards per player
+1. 52 cards per player + 2 jokers
 2. Highest card value wins the round
 3. Ties result in War:
    - Three face-down cards, one face-up
@@ -143,6 +160,7 @@ Status effects generally last 1-3 rounds and can be applied through cards, Bigfo
 - Unlockable as players progress
 - Reduce opponent's HP
 - Can inflict status effects
+- Players can use Defense Points (DP) to reduce the damage they take from attacks.
 
 ### Items
 - Gained from winning certain cards
@@ -199,6 +217,16 @@ Status effects generally last 1-3 rounds and can be applied through cards, Bigfo
 - Action-based sound effects
 - Unique audio cues for status effect application and removal
 - Special sound effects for rare card acquisitions and upgrades
+
+## UX and UI
+- The overall theme is heavily inspired by a slot machine.
+- The game should be easy to understand and play.
+- The game should have a simple and clean UI.
+- The game should have a menu system with options to start a new game, view the rules, and view the credits.
+- The game should have a settings menu to adjust the game's settings.
+- The game should have a help menu to explain how to play the game.
+- The game should have a credits menu to explain the creators of the game.
+- The game should have a pause menu to pause the game.
 
 ## Technical Details
 

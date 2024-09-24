@@ -81,3 +81,16 @@ export default function Button({ children, onClick }) {
     </button>
   );
 }
+```
+
+## Coding Style
+- Use functional components with hooks
+- Prefer arrow functions for component definitions
+- Use destructuring for props
+- Use async/await for asynchronous operations
+- Follow ESLint rules defined in the project
+
+## Git Workflow
+- Use feature branches for new features or bug fixes
+- Write clear, concise commit messages
+- Create pull requests for code review before merging to main branch

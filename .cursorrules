@@ -130,6 +130,84 @@
         "pattern": "import .* from ['\"]react-icons['\"]",
         "message": "Use React Icons for a comprehensive set of icons in reusable UI components. See [conventions.md](docs/conventions.md) for details."
       }
+    },
+    {
+      "name": "Functional Components",
+      "description": "Ensure components are written as functional components with hooks.",
+      "pattern": "**/*.js",
+      "message": "Use functional components with hooks. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "function.*\\(\\).*{",
+        "message": "Use arrow function syntax for component definitions. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Prop Destructuring",
+      "description": "Ensure props are destructured in component parameters.",
+      "pattern": "**/*.js",
+      "message": "Use prop destructuring in component parameters. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "const.*=.*props\\.",
+        "message": "Destructure props in component parameters. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Async/Await Usage",
+      "description": "Ensure async/await is used for asynchronous operations.",
+      "pattern": "**/*.js",
+      "message": "Use async/await for asynchronous operations. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "\\.then\\(",
+        "message": "Use async/await instead of .then() for asynchronous operations. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Documentation Reference",
+      "description": "Ensure all major decisions, code updates, and project actions reference the documentation in the /docs directory.",
+      "pattern": "**/*.{js,jsx,ts,tsx,md}",
+      "message": "Always reference relevant documentation in /docs when making decisions or changes. Update docs if necessary."
+    },
+    {
+      "name": "Documentation Update - Code Changes",
+      "description": "Ensure documentation is updated when making significant code changes.",
+      "pattern": "**/*.{js,jsx,ts,tsx}",
+      "message": "Update relevant documentation in /docs to reflect this code change."
+    },
+    {
+      "name": "Documentation Update - Manual Changes",
+      "description": "Ensure documentation changes are consistent across all relevant files.",
+      "pattern": "docs/**/*.md",
+      "message": "Check and update other relevant documentation files to maintain consistency."
+    },
+    {
+      "name": "Feature Documentation",
+      "description": "Ensure new features are documented.",
+      "pattern": "src/**/*.{js,jsx,ts,tsx}",
+      "message": "Document this new feature in /docs/features.md and update other relevant documentation."
+    },
+    {
+      "name": "Architecture Documentation",
+      "description": "Ensure architectural changes are documented.",
+      "pattern": "src/**/*.{js,jsx,ts,tsx}",
+      "message": "Update /docs/architecture.md if this change affects the project's architecture."
+    },
+    {
+      "name": "Convention Documentation",
+      "description": "Ensure new conventions are documented.",
+      "pattern": "**/*.{js,jsx,ts,tsx,css,scss}",
+      "message": "Document any new conventions introduced by this change in /docs/conventions.md."
+    },
+    {
+      "name": "Changelog Update",
+      "description": "Ensure the changelog is updated for significant changes.",
+      "pattern": "**/*.{js,jsx,ts,tsx,md}",
+      "message": "Update /docs/changelog.md to reflect this significant change."
+    },
+    {
+      "name": "Development Guide Update",
+      "description": "Ensure the development guide is updated when development processes change.",
+      "pattern": "**/*.{js,jsx,ts,tsx,json,yml,yaml}",
+      "message": "Update /docs/development-guide.md if this change affects the development process."
     }
   ]
 }
