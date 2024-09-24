@@ -245,4 +245,26 @@ Status effects generally last 1-3 rounds and can be applied through cards, Bigfo
 
 ## Conclusion
 
-This document serves as the master vision for the Bigfoot War project. It outlines the core gameplay mechanics, rules, and technical details that will guide the development process, including the newly integrated status effect system and the expanded card collection feature. The card collection aspect adds depth to the game, encouraging long-term engagement through collecting, trading, and strategic deck building. All team members should refer to this document to ensure consistency and alignment with the project's goals.
+## Improvements and Suggestions
+
+1. Tutorial Integration: A comprehensive tutorial mode will be implemented to guide new players through the gameplay mechanics. It will be accessible from the Main Menu and automatically triggered for first-time players.
+
+2. Quick Play Option: A "Quick Play" button will be added to the Main Menu, allowing players to quickly start a game with randomly selected characters and opponents.
+
+3. Deck Building: A deck-building feature will be introduced, allowing players to customize their card decks before entering a game, adding strategic depth.
+
+4. Multiplayer Lobby: A multiplayer lobby will be developed for future expansion, where players can challenge each other or join tournaments.
+
+5. Daily Challenges: Daily challenges or quests will be implemented to encourage regular play and provide additional rewards.
+
+6. Seasonal Events: Seasonal events with unique characters, cards, or game modes will be created to keep the content fresh and engaging.
+
+7. Replay System: A replay feature will be added, allowing players to save and watch their best games or learn from their mistakes.
+
+8. Leaderboards: Global and friend leaderboards will be implemented to foster competition and community engagement.
+
+9. In-Game Store: An option to access the shop during gameplay for purchasing last-minute items or upgrades will be added.
+
+10. Character Progression: A leveling system for individual Bigfoot characters will be implemented, unlocking new abilities or skins as they gain experience.
+
+These improvements and suggestions will be incorporated into the development roadmap and implemented as the project progresses.

@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { VStack, FormControl, FormLabel, Input, Button, Heading, Text } from '@chakra-ui/react';
 
-const Login = ({ setUser }) => {
+const Login = ({ setUser, onCancel }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,25 +18,35 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Login</button>
-      <button type="button" onClick={handleTestUserLogin}>Login as Test User</button>
-    </form>
+    <VStack spacing={4} align="stretch">
+      <Heading as="h2" size="lg" textAlign="center" color="white">
+        Login
+      </Heading>
+      <form onSubmit={handleLogin}>
+        <VStack spacing={4}>
+          <FormControl>
+            <FormLabel color="white">Username</FormLabel>
+            <Input 
+              type="text" 
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)}
+              bg="white"
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel color="white">Password</FormLabel>
+            <Input 
+              type="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)}
+              bg="white"
+            />
+          </FormControl>
+          <Button type="submit">Login</Button>
+          <Button type="button" onClick={handleTestUserLogin}>Login as Test User</Button>
+        </VStack>
+      </form>
+    </VStack>
   );
 };
 
