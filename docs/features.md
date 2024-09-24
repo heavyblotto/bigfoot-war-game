@@ -14,7 +14,7 @@ This document outlines the features of the Bigfoot War project, including both f
    - Implement user registration and login functionality
    - Secure user data storage and password hashing
    - Create user profiles with customizable settings
-   - Status: Not Started
+   - Status: Completed
 
 3. **Game Lobby**
    - Develop a central hub for players to access different game modes
