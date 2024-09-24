@@ -15,7 +15,7 @@
 6. Create a pull request for review
 
 ## Key Files and Directories
-- `src/app/page.js`: Main entry point of the application
+- `src/app/page.js`: Main entry point of the application, implements basic authentication flow
 - `src/components/`: Reusable UI components
 - `src/store/`: Zustand stores for state management
 - `src/data/`: JSON files for game data
@@ -42,3 +42,11 @@
 5. Deploy your application using the Vercel CLI or GitHub integration
 
 For more details, refer to the [Vercel documentation](https://vercel.com/docs).
+
+## Database Management
+- Vercel PostgreSQL will be used for database management
+- To set up the database:
+  1. Create a new PostgreSQL database in your Vercel project settings
+  2. Use the provided connection string in your application
+  3. Implement database migrations for schema changes
+  4. Use an ORM like Prisma for database operations

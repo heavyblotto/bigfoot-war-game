@@ -12,11 +12,12 @@ This project is a Next.js application that leverages several modern libraries an
 - **Animations**: Framer Motion
 - **Icons**: React Icons
 - **Deployment Platform**: Vercel
+- **Database**: Vercel PostgreSQL
 
 ## Project Structure
 - `src/`
   - `components/`: Reusable UI components
-  - `app/`: Page components and routing
+  - `app/`: Page components and routing, including the main authentication flow
   - `store/`: Zustand stores for state management
   - `data/`: JSON files for game data (e.g., bigfoots.json)
   - `styles/`: Global styles and Chakra UI theme customization
@@ -164,3 +165,8 @@ Our Next.js API routes are deployed as serverless functions on Vercel. This prov
 - Performance optimization: Vercel optimizes API routes for low latency and fast cold starts.
 
 API routes are located in the `src/app/api` directory and follow Next.js 13+ conventions for routing and handling requests.
+
+## Database Schema
+(To be implemented)
+- User table: Stores user credentials and profile information
+- Game data tables: For storing game-related information (e.g., character data, game sessions)

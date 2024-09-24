@@ -12,9 +12,10 @@ This document outlines the features of the Bigfoot War project, including both f
 
 2. **User Authentication**
    - Implement user registration and login functionality
-   - Secure user data storage and password hashing
+   - Secure user data storage and password hashing using Vercel's PostgreSQL
    - Create user profiles with customizable settings
-   - Status: Completed
+   - Implement token-based authentication
+   - Status: In Progress
 
 3. **Game Lobby**
    - Develop a central hub for players to access different game modes

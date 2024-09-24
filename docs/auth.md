@@ -21,6 +21,10 @@ This document outlines the design and implementation of the authentication syste
 ### Forms
 - Registration and login forms using Chakra UI components.
 
+### Home Page
+- Implements basic authentication flow
+- Conditionally renders Register, Login, or Profile components based on user state
+
 ## Design Rationale
 
 ### Alignment with Project Conventions
@@ -50,3 +54,18 @@ This document outlines the design and implementation of the authentication syste
 
 ## Conclusion
 This implementation sets up a basic yet scalable authentication system for the Bigfoot War project. It adheres to the project's conventions and documentation, ensuring consistency and ease of future development. The use of Next.js API routes, Zustand, and Chakra UI aligns with the project's architecture and technical requirements, providing a solid foundation for further enhancements.
+
+## Future Improvements
+
+### Database Integration
+- Implement PostgreSQL database using Vercel's PostgreSQL feature
+- Store user credentials and profile information securely
+- Implement proper password hashing and salting
+
+### API Routes
+- Develop robust API routes for user registration, login, and profile management
+- Implement proper error handling and input validation
+
+### State Management
+- Transition from local state to global state management using Zustand
+- Implement proper authentication flow with token-based authentication

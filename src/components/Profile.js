@@ -1,17 +1,13 @@
-import { useUserStore } from '@/store/userStore';
-
-const Profile = () => {
-  const { user, logout } = useUserStore();
-
-  if (!user) {
-    return <div>Please log in to see your profile.</div>;
-  }
+const Profile = ({ user, setUser }) => {
+  const handleLogout = () => {
+    setUser(null);
+  };
 
   return (
     <div>
-      <h1>Profile</h1>
-      <p>Username: {user.username}</p>
-      <button onClick={logout}>Logout</button>
+      <h2>Profile</h2>
+      <p>Welcome, {user.username}!</p>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };

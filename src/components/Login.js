@@ -1,44 +1,41 @@
 import { useState } from 'react';
-import { useUserStore } from '@/store/userStore';
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const setUser = useUserStore(state => state.setUser);
 
-  const handleLogin = async () => {
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password }),
-    });
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    // Here we'll add the login logic
+    console.log('Login:', username, password);
+    // For now, let's just set a mock user
+    setUser({ username });
+  };
 
-    const data = await res.json();
-    if (res.ok) {
-      setUser(data.user);
-      alert('Login successful');
-    } else {
-      alert(data.message);
-    }
+  const handleTestUserLogin = () => {
+    setUser({ username: 'testuser' });
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <form onSubmit={handleLogin}>
+      <h2>Login</h2>
       <input
         type="text"
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        required
       />
       <input
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        required
       />
-      <button onClick={handleLogin}>Login</button>
-    </div>
+      <button type="submit">Login</button>
+      <button type="button" onClick={handleTestUserLogin}>Login as Test User</button>
+    </form>
   );
 };
 
