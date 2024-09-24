@@ -1,6 +1,6 @@
-import Register from '@/components/Register';
-import Login from '@/components/Login';
-import Profile from '@/components/Profile';
+import Register from '../components/Register';
+import Login from '../components/Login';
+import Profile from '../components/Profile';
 
 const Home = () => {
   return (
