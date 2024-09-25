@@ -107,3 +107,40 @@ When implementing new features, follow these steps:
 - Use feature flags for gradual rollout of new features
 
 Remember to update this guide as new development processes or best practices are introduced to the project.
+
+## Asset Management
+
+- We prefer WebP format for images due to its superior compression and quality
+- Store WebP images in `src/assets/images/`
+- Use Next.js `Image` component, which automatically handles WebP serving and fallbacks
+- For converting images to WebP, use [tool of choice, e.g., Sharp]
+
+## Image Handling
+
+Our project supports various image formats including WebP, AVIF, PNG, JPEG, GIF, and SVG. 
+
+- Prefer using WebP or AVIF for best performance when possible.
+- Use PNG for images requiring transparency.
+- JPEG is suitable for photographs without transparency.
+- GIF can be used for simple animations.
+- SVG is great for icons and logos that need to scale.
+
+When using the Next.js `Image` component, it will automatically optimize and serve the most appropriate format based on the browser's capabilities.
+
+Example usage:
+
+```
+jsx
+import Image from 'next/image';
+import logo from '@/assets/images/ui/logo.svg';
+const Header = () => (
+<Image
+src={logo}
+alt="Bigfoot War Logo"
+width={200}
+height={100}
+/>
+);
+```
+
+For external images, make sure to add the domain to the `domains` array in `next.config.mjs`.
