@@ -111,7 +111,7 @@ const Home = () => {
           maxWidth="100%"
           width="100%"
         >
-          Step into Bigfoot War! Battle with cards inspired by classic War. Choose your Bigfoot, use abilities, and outmaneuver foes. Become the ultimate Bigfoot warrior! Experience fast-paced, single-player action! Unique Bigfoot abilities and a dynamic AI create thrilling, one-of-a-kind battles. Quick rounds and exciting gameplay keep you coming back for more!
+          Bigfoot War throws you into a mythic battle where powerful Bigfoots clash for dominance. Command legendary creatures, each with their own unique abilities, in a card-based duel of strategy and strength. Choose your Bigfoot, unleash devastating attacks, and outsmart your opponent in a game where every decision shapes the outcome. The wilderness is your battleground—can you rise to victory in this legendary struggle of might and wit?
         </Text>
       )}
     </Container>
