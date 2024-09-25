@@ -101,6 +101,19 @@ const Home = () => {
           )}
         </Box>
       </VStack>
+      {!user && !showRegister && !showLogin && (
+        <Text
+          color="white"
+          fontSize="sm"
+          fontFamily="'Press Start 2P', cursive"
+          textAlign="center"
+          mt={4}
+          maxWidth="100%"
+          width="100%"
+        >
+          Bigfoot War throws you into a mythic battle where powerful Bigfoots clash for dominance. Command legendary creatures, each with their own unique abilities, in a card-based duel of strategy and strength. Choose your Bigfoot, unleash devastating attacks, and outsmart your opponent in a game where every decision shapes the outcome. The wilderness is your battleground—can you rise to victory in this legendary struggle of might and wit?
+        </Text>
+      )}
     </Container>
   );
 };

@@ -21,11 +21,11 @@ This document outlines the features of the Bigfoot War project, including both f
    - Develop a central hub for players to access different game modes
    - Implement buttons for various game features:
      - Start New Game
-     - Join Existing Game
      - View Statistics
      - Shop
      - Settings
      - Help/Tutorial
+     - Account Management
    - Display player statistics and achievements
    - Status: Partially Implemented
 

@@ -6,66 +6,70 @@ This document outlines the design and implementation of the authentication syste
 ## Implementation Details
 
 ### API Routes
-- **register.js**: Handles user registration.
+- **register.js**: Handles user registration with optional email.
 - **login.js**: Handles user login.
+- **verify.js**: Verifies user token for authentication persistence.
+
+### Database Schema
+The User model in the database schema has been updated to make the email field optional:
+
+```
+prisma:prisma/schema.prisma
+startLine: 10
+endLine: 18
+```
+
+### Registration Process
+- Users can register with a username and password.
+- Email is optional during registration.
+- The registration form in the frontend reflects this change:
+
+### Login Process
+- Users can log in using their username and password.
+- The login process remains unchanged, but the backend now handles the possibility of users without an email.
 
 ### State Management
-- **Zustand**: Used to manage user state.
+- Zustand is used to manage user state across the application.
 
 ### Player Profile
-- A simple profile component to display user information.
-
-### Test User
-- A predefined test user for development purposes.
+- A simple profile component displays user information, including the email if provided.
 
 ### Forms
-- Registration and login forms using Chakra UI components.
-
-### Home Page
-- Implements basic authentication flow
-- Conditionally renders Register, Login, or Profile components based on user state
+- Registration and login forms use Chakra UI components for consistent styling and accessibility.
 
 ## Design Rationale
 
+### Flexibility
+- Making email optional allows for a smoother registration process while still providing the option for account recovery in the future.
+
 ### Alignment with Project Conventions
-- **State Management**: The project uses Zustand for state management, as outlined in `docs/architecture.md` and `docs/conventions.md`.
-- **Form Handling**: React Hook Form is used for efficient form state and validation management, as specified in `docs/conventions.md`.
-- **UI Components**: Chakra UI is used for building accessible and responsive user interfaces, as mentioned in `docs/architecture.md` and `docs/conventions.md`.
+- The implementation follows the project's conventions for state management, form handling, and UI components.
 
 ### Simplicity and Scalability
-- The design is simple, making it easy to understand and extend. Future features like password hashing and email recovery can be added without significant refactoring.
-- The use of Next.js API routes ensures that the backend logic is isolated and can be scaled independently.
-
-### Development Efficiency
-- The predefined test user allows for quick testing and debugging during development.
-- Zustand and React Hook Form are lightweight and efficient, reducing the complexity of state and form management.
+- The design remains simple and easy to understand, while allowing for future enhancements like email verification or password recovery.
 
 ## Impact on the Project
 
 ### Core System Features
-- **User Authentication**: This implementation addresses the "User Authentication" feature in `docs/features.md`, changing its status from "Not Started" to "In Progress" or "Completed".
+- The "User Authentication" feature has been updated to include optional email registration.
 
 ### Technical Features
-- **State Management**: The implementation aligns with the "State Management" feature in `docs/features.md`.
-- **Form Handling**: The use of React Hook Form aligns with the "Form Handling" feature in `docs/features.md`.
+- The database schema and API routes have been adjusted to accommodate optional email addresses.
 
 ### Documentation and Conventions
-- The implementation follows the project conventions outlined in `docs/conventions.md` and ensures that the new features are documented in `docs/features.md`.
-
-## Conclusion
-This implementation sets up a basic yet scalable authentication system for the Bigfoot War project. It adheres to the project's conventions and documentation, ensuring consistency and ease of future development. The use of Next.js API routes, Zustand, and Chakra UI aligns with the project's architecture and technical requirements, providing a solid foundation for further enhancements.
+- This document has been updated to reflect the changes in the authentication system.
+- The `docs/database.md` file should be updated to reflect the change in the User schema.
 
 ## Future Improvements
 
-### Database Integration
-- PostgreSQL database implemented using Vercel's PostgreSQL feature
-- User credentials and profile information stored securely
-- Password hashing implemented using bcrypt
+### Email Verification
+- Implement an email verification system for users who choose to provide an email address.
 
-### API Routes
-- Develop robust API routes for user registration, login, and profile management
-- Implement proper error handling and input validation
+### Password Recovery
+- Develop a password recovery feature for users with registered email addresses.
 
-### State Management
-- Transition from local state to global state management using Zustand
-- Implement proper authentication flow with token-based authentication
+### Enhanced Profile Management
+- Allow users to add or change their email address after registration.
+
+## Conclusion
+The updated authentication system provides a flexible approach to user registration and management, aligning with the project's goals of simplicity and scalability. The optional email feature balances user convenience with the potential for future account management features.
