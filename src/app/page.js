@@ -101,6 +101,19 @@ const Home = () => {
           )}
         </Box>
       </VStack>
+      {!user && !showRegister && !showLogin && (
+        <Text
+          color="white"
+          fontSize="sm"
+          fontFamily="'Press Start 2P', cursive"
+          textAlign="center"
+          mt={4}
+          maxWidth="100%"
+          width="100%"
+        >
+          Step into Bigfoot War! Battle with cards inspired by classic War. Choose your Bigfoot, use abilities, and outmaneuver foes. Become the ultimate Bigfoot warrior! Experience fast-paced, single-player action! Unique Bigfoot abilities and a dynamic AI create thrilling, one-of-a-kind battles. Quick rounds and exciting gameplay keep you coming back for more!
+        </Text>
+      )}
     </Container>
   );
 };
