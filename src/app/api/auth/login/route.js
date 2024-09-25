@@ -4,6 +4,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 export async function POST(request) {
+  console.log('Environment variables:', process.env);
+  console.log('JWT_SECRET:', process.env.JWT_SECRET);
   if (!process.env.JWT_SECRET) {
     console.error('JWT_SECRET is not set');
     return NextResponse.json({ error: 'JWT_SECRET is not set' }, { status: 500 });
