@@ -4,29 +4,27 @@ import { VStack, FormControl, FormLabel, Input, Button, Heading, Text } from '@c
 const Login = ({ setUser, onCancel }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: username, password }),
+        body: JSON.stringify({ username, password }),
       });
       const data = await response.json();
       if (response.ok) {
         setUser(data.user);
         localStorage.setItem('token', data.token);
       } else {
-        console.error(data.error);
+        setError(data.error || 'Login failed');
       }
     } catch (error) {
-      console.error('Login failed:', error);
+      setError('An error occurred during login');
     }
-  };
-
-  const handleTestUserLogin = () => {
-    setUser({ username: 'testuser' });
   };
 
   return (
@@ -34,6 +32,11 @@ const Login = ({ setUser, onCancel }) => {
       <Heading as="h2" size="lg" textAlign="center" color="white">
         Login
       </Heading>
+      {error && (
+        <Text color="red.500" textAlign="center" mb={4}>
+          {error}
+        </Text>
+      )}
       <form onSubmit={handleLogin}>
         <VStack spacing={4}>
           <FormControl>
@@ -83,26 +86,6 @@ const Login = ({ setUser, onCancel }) => {
             _hover={{}} // Remove hover effect
           >
             Login
-          </Button>
-          <Button
-            colorScheme="green"
-            width="full"
-            mt={2}
-            onClick={handleTestUserLogin}
-            bgGradient="linear(to-r, green.400, green.600)"
-            _hover={{}} // Remove hover effect
-          >
-            Login as Test User
-          </Button>
-          <Button
-            colorScheme="purple"
-            width="full"
-            mt={2}
-            onClick={onCancel}
-            bgGradient="linear(to-r, purple.400, purple.600)"
-            _hover={{}} // Remove hover effect
-          >
-            Cancel
           </Button>
         </VStack>
       </form>

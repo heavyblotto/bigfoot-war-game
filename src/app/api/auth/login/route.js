@@ -5,9 +5,9 @@ import jwt from 'jsonwebtoken';
 
 export async function POST(request) {
   try {
-    const { email, password } = await request.json();
+    const { username, password } = await request.json();
 
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prisma.user.findUnique({ where: { username } });
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
