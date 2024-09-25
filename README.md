@@ -35,4 +35,26 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Project Overview
+
+This project is a game called "Bigfoot War" built with Next.js, Chakra UI, and Vercel PostgreSQL. It features user authentication, and will include game mechanics related to Bigfoot characters.
+
+## Key Features
+
+- User Registration and Login
+- PostgreSQL Database Integration
+- Responsive UI with Chakra UI
+
+## Development
+
+To set up the project for development:
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up environment variables (see `.env.example`)
+4. Run database migrations: `npx prisma migrate dev`
+5. Start the development server: `npm run dev`
+
+For more detailed information, refer to the `docs/` directory.
+
 Thank yoU!

@@ -58,9 +58,9 @@ This implementation sets up a basic yet scalable authentication system for the B
 ## Future Improvements
 
 ### Database Integration
-- Implement PostgreSQL database using Vercel's PostgreSQL feature
-- Store user credentials and profile information securely
-- Implement proper password hashing and salting
+- PostgreSQL database implemented using Vercel's PostgreSQL feature
+- User credentials and profile information stored securely
+- Password hashing implemented using bcrypt
 
 ### API Routes
 - Develop robust API routes for user registration, login, and profile management

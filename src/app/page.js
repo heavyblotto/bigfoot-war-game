@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, Heading, VStack, Container, Button, Text } from '@chakra-ui/react';
 import Register from '../components/Register';
 import Login from '../components/Login';
@@ -11,6 +11,28 @@ const Home = () => {
   const [user, setUser] = useState(null);
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Verify token and set user
+      fetch('/api/auth/verify', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.user) {
+            setUser(data.user);
+          }
+        })
+        .catch((error) => {
+          console.error('Error verifying token:', error);
+          localStorage.removeItem('token');
+        });
+    }
+  }, []);
 
   return (
     <Container maxW="container.xl" centerContent>

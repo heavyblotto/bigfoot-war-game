@@ -4,11 +4,11 @@
 This project uses Vercel's PostgreSQL feature for database management. This document outlines the database schema, migration strategies, and best practices for database operations.
 
 ## Schema
-(To be implemented)
-- Users table
-- Characters table
-- Game sessions table
-- Achievements table
+- Users table: Implemented
+  - Fields: id, username, email, password, profile, createdAt, updatedAt
+- Characters table: To be implemented
+- Game sessions table: To be implemented
+- Achievements table: To be implemented
 
 ## Migrations
 - Use a migration tool (e.g., Prisma Migrate) to manage database schema changes

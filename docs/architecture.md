@@ -167,6 +167,5 @@ Our Next.js API routes are deployed as serverless functions on Vercel. This prov
 API routes are located in the `src/app/api` directory and follow Next.js 13+ conventions for routing and handling requests.
 
 ## Database Schema
-(To be implemented)
-- User table: Stores user credentials and profile information
-- Game data tables: For storing game-related information (e.g., character data, game sessions)
+- User table: Implemented. Stores user credentials and profile information
+- Game data tables: To be implemented (e.g., character data, game sessions)

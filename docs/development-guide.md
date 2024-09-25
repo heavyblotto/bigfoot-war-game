@@ -44,12 +44,12 @@
 For more details, refer to the [Vercel documentation](https://vercel.com/docs).
 
 ## Database Management
-- Vercel PostgreSQL will be used for database management
-- To set up the database:
-  1. Create a new PostgreSQL database in your Vercel project settings
-  2. Use the provided connection string in your application
-  3. Implement database migrations for schema changes
-  4. Use an ORM like Prisma for database operations
+- Vercel PostgreSQL is used for database management
+- Database setup:
+  1. PostgreSQL database created in Vercel project settings
+  2. Connection string stored in POSTGRES_PRISMA_URL environment variable
+  3. Database migrations implemented using Prisma Migrate
+  4. Prisma ORM used for database operations
 
 ## Implementing New Features
 

@@ -7,10 +7,22 @@ const Login = ({ setUser, onCancel }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // Here we'll add the login logic
-    console.log('Login:', username, password);
-    // For now, let's just set a mock user
-    setUser({ username });
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setUser(data.user);
+        localStorage.setItem('token', data.token);
+      } else {
+        console.error(data.error);
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
   };
 
   const handleTestUserLogin = () => {
