@@ -10,11 +10,15 @@ const Register = ({ setUser, onCancel }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    if (!username || !password) {
+      setError('Username and password are required');
+      return;
+    }
     try {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username, password, email }),
       });
       const data = await response.json();
       if (response.ok) {
@@ -40,17 +44,62 @@ const Register = ({ setUser, onCancel }) => {
       )}
       <form onSubmit={handleSubmit}>
         <VStack spacing={4}>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel color="white">Username</FormLabel>
-            <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <Input 
+              type="text" 
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)}
+              bg="gray.800"
+              color="white"
+              border="1px"
+              borderColor="gray.600"
+              _hover={{
+                borderColor: "gray.500"
+              }}
+              _focus={{
+                borderColor: "blue.300",
+                boxShadow: "0 0 0 1px #63B3ED"
+              }}
+            />
           </FormControl>
-          <FormControl>
-            <FormLabel color="white">Email</FormLabel>
-            <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </FormControl>
-          <FormControl>
+          <FormControl isRequired>
             <FormLabel color="white">Password</FormLabel>
-            <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <Input 
+              type="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)}
+              bg="gray.800"
+              color="white"
+              border="1px"
+              borderColor="gray.600"
+              _hover={{
+                borderColor: "gray.500"
+              }}
+              _focus={{
+                borderColor: "blue.300",
+                boxShadow: "0 0 0 1px #63B3ED"
+              }}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel color="white">Email (optional)</FormLabel>
+            <Input 
+              type="email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)}
+              bg="gray.800"
+              color="white"
+              border="1px"
+              borderColor="gray.600"
+              _hover={{
+                borderColor: "gray.500"
+              }}
+              _focus={{
+                borderColor: "blue.300",
+                boxShadow: "0 0 0 1px #63B3ED"
+              }}
+            />
           </FormControl>
           <Button
             type="submit"
@@ -68,10 +117,10 @@ const Register = ({ setUser, onCancel }) => {
             onClick={onCancel}
             size="lg"
             width="full"
-            variant="outline"
-            colorScheme="gray"
+            colorScheme="purple"
+            bgGradient="linear(to-r, purple.400, purple.600)"
             _hover={{
-              bg: "gray.700",
+              bgGradient: "linear(to-r, purple.500, purple.700)",
             }}
           >
             Cancel

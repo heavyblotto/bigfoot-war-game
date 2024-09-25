@@ -11,7 +11,7 @@ const Login = ({ setUser, onCancel }) => {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: username, password }),
       });
       const data = await response.json();
       if (response.ok) {
@@ -42,7 +42,17 @@ const Login = ({ setUser, onCancel }) => {
               type="text" 
               value={username} 
               onChange={(e) => setUsername(e.target.value)}
-              bg="white"
+              bg="gray.800"
+              color="white"
+              border="1px"
+              borderColor="gray.600"
+              _hover={{
+                borderColor: "gray.500"
+              }}
+              _focus={{
+                borderColor: "blue.300",
+                boxShadow: "0 0 0 1px #63B3ED"
+              }}
             />
           </FormControl>
           <FormControl>
@@ -51,7 +61,17 @@ const Login = ({ setUser, onCancel }) => {
               type="password" 
               value={password} 
               onChange={(e) => setPassword(e.target.value)}
-              bg="white"
+              bg="gray.800"
+              color="white"
+              border="1px"
+              borderColor="gray.600"
+              _hover={{
+                borderColor: "gray.500"
+              }}
+              _focus={{
+                borderColor: "blue.300",
+                boxShadow: "0 0 0 1px #63B3ED"
+              }}
             />
           </FormControl>
           <Button
@@ -59,6 +79,8 @@ const Login = ({ setUser, onCancel }) => {
             width="full"
             mt={4}
             type="submit"
+            bgGradient="linear(to-r, blue.400, blue.600)"
+            _hover={{}} // Remove hover effect
           >
             Login
           </Button>
@@ -67,8 +89,20 @@ const Login = ({ setUser, onCancel }) => {
             width="full"
             mt={2}
             onClick={handleTestUserLogin}
+            bgGradient="linear(to-r, green.400, green.600)"
+            _hover={{}} // Remove hover effect
           >
             Login as Test User
+          </Button>
+          <Button
+            colorScheme="purple"
+            width="full"
+            mt={2}
+            onClick={onCancel}
+            bgGradient="linear(to-r, purple.400, purple.600)"
+            _hover={{}} // Remove hover effect
+          >
+            Cancel
           </Button>
         </VStack>
       </form>
