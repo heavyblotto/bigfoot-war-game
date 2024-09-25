@@ -4,6 +4,7 @@ import Statistics from './Statistics';
 import Shop from './Shop';
 import Settings from './Settings';
 import HelpTutorial from './HelpTutorial';
+import Account from './Account'; // Add this import
 
 // Add this near the top of your component, outside of the render function
 const pulseAnimation = keyframes`
@@ -34,6 +35,8 @@ const Lobby = ({ user, setUser }) => {
         return <Settings />;
       case 'help':
         return <HelpTutorial />;
+      case 'account':
+        return <Account user={user} setUser={setUser} />; // Add this case
       default:
         return (
           <VStack spacing={4}>
@@ -62,7 +65,7 @@ const Lobby = ({ user, setUser }) => {
               onClick={() => alert('Start New Game feature coming soon!')}
               animation={animation}
             >
-              Start New Game
+              Play!
             </Button>
             <Button
               size="lg"
@@ -112,7 +115,7 @@ const Lobby = ({ user, setUser }) => {
               }}
               onClick={() => setCurrentView('help')}
             >
-              Help/Tutorial
+              Help
             </Button>
             <Button
               onClick={handleLogout}
@@ -125,6 +128,19 @@ const Lobby = ({ user, setUser }) => {
               }}
             >
               Logout
+            </Button>
+            <Button
+              size="lg"
+              width="full"
+              colorScheme="orange"
+              bgGradient="linear(to-r, orange.400, orange.600)"
+              _hover={{
+                bgGradient: "linear(to-r, orange.500, orange.700)",
+              }}
+              onClick={() => setCurrentView('account')}
+              color="white"
+            >
+              Account
             </Button>
           </VStack>
         );
