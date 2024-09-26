@@ -150,3 +150,50 @@ Example button styling:
 ```
 
 Follow these conventions to ensure a cohesive and visually appealing user interface throughout the game.
+
+## Image Implementation
+
+When implementing images in our Next.js project, follow these guidelines:
+
+1. Store image assets in the `src/assets/images` directory.
+
+2. Import images in your component files using the following syntax:
+   ```javascript
+   import imageName from '@/assets/images/image-file-name.extension';
+   ```
+
+3. Use the Next.js `Image` component to display images:
+   ```javascript
+   import Image from 'next/image';
+
+   // In your JSX:
+   <Image
+     src={imageName}
+     alt="Descriptive alt text"
+     width={width}
+     height={height}
+     // Or use 'fill' prop for responsive images:
+     // fill
+     // style={{ objectFit: 'cover' }}
+   />
+   ```
+
+4. For responsive images that should fill their container:
+   ```javascript
+   <Box position="relative" width="100%" height="300px">
+     <Image
+       src={imageName}
+       alt="Descriptive alt text"
+       fill
+       style={{ objectFit: 'cover' }}
+     />
+   </Box>
+   ```
+
+5. Always provide descriptive `alt` text for accessibility.
+
+6. Use the `width` and `height` props when the image dimensions are known, or use the `fill` prop for images that should responsively fill their container.
+
+7. Optimize images for web use before adding them to the project. Consider using WebP format for better performance.
+
+By following these conventions, we ensure consistent and optimized image implementation across our project.

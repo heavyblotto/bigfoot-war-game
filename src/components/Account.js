@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { VStack, Heading, Box, Text, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import useStrings from '@/hooks/useStrings';
 
 const Account = ({ user, setUser }) => {
   const [email, setEmail] = useState(user.email || '');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const { titles, labels, messages } = useStrings();
 
   const handleUpdateEmail = async (e) => {
     e.preventDefault();
@@ -18,12 +20,12 @@ const Account = ({ user, setUser }) => {
       const data = await response.json();
       if (response.ok) {
         setUser({ ...user, email });
-        setMessage('Email updated successfully');
+        setMessage(messages.emailUpdateSuccess);
       } else {
-        setMessage(data.error || 'Failed to update email');
+        setMessage(data.error || messages.emailUpdateError);
       }
     } catch (error) {
-      setMessage('An error occurred while updating email');
+      setMessage(messages.generalError);
     }
   };
 
@@ -39,19 +41,19 @@ const Account = ({ user, setUser }) => {
       const data = await response.json();
       if (response.ok) {
         setPassword('');
-        setMessage('Password updated successfully');
+        setMessage(messages.passwordUpdateSuccess);
       } else {
-        setMessage(data.error || 'Failed to update password');
+        setMessage(data.error || messages.passwordUpdateError);
       }
     } catch (error) {
-      setMessage('An error occurred while updating password');
+      setMessage(messages.generalError);
     }
   };
 
   return (
     <VStack spacing={6} align="stretch">
       <Heading as="h2" size="lg" textAlign="center" color="white">
-        Account Management
+        {titles.accountManagement}
       </Heading>
       <Box
         borderWidth={2}
@@ -61,7 +63,7 @@ const Account = ({ user, setUser }) => {
         boxShadow="md"
       >
         <Text fontSize="xl" fontWeight="bold" color="white" mb={4}>
-          Welcome, {user.username}!
+          {messages.welcomeUser.replace('{username}', user.username)}
         </Text>
         {message && (
           <Text color="green.300" mb={4}>
@@ -70,7 +72,7 @@ const Account = ({ user, setUser }) => {
         )}
         <form onSubmit={handleUpdateEmail}>
           <FormControl>
-            <FormLabel color="white">Email</FormLabel>
+            <FormLabel color="white">{labels.email}</FormLabel>
             <Input
               type="email"
               value={email}
@@ -94,12 +96,12 @@ const Account = ({ user, setUser }) => {
             type="submit"
             width="full"
           >
-            Update Email
+            {labels.updateEmail}
           </Button>
         </form>
         <form onSubmit={handleUpdatePassword} mt={6}>
           <FormControl>
-            <FormLabel color="white">New Password</FormLabel>
+            <FormLabel color="white">{labels.newPassword}</FormLabel>
             <Input
               type="password"
               value={password}
@@ -123,7 +125,7 @@ const Account = ({ user, setUser }) => {
             type="submit"
             width="full"
           >
-            Update Password
+            {labels.updatePassword}
           </Button>
         </form>
       </Box>

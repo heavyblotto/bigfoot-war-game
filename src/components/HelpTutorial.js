@@ -1,11 +1,14 @@
 import React from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
+import useStrings from '@/hooks/useStrings';
 
 const HelpTutorial = () => {
+  const { titles, messages } = useStrings();
+
   return (
     <Box>
-      <Heading as="h3" size="lg" mb={4}>Help / Tutorial</Heading>
-      <Text>Game instructions and tutorial coming soon!</Text>
+      <Heading as="h3" size="lg" mb={4}>{titles.helpTutorial}</Heading>
+      <Text>{messages.helpTutorialComingSoon}</Text>
     </Box>
   );
 };

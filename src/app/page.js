@@ -1,21 +1,32 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Box, Heading, VStack, Container, Button, Text } from '@chakra-ui/react';
+import { Box, Heading, VStack, Container, Button, Text, useColorModeValue, Flex, Spinner } from '@chakra-ui/react';
+import Image from 'next/image';
 import Register from '../components/Register';
 import Login from '../components/Login';
-import Profile from '../components/Profile';
 import Lobby from '../components/Lobby';
+import useStrings from '@/hooks/useStrings';
+import bigfootWarImage from '@/assets/images/Bigfoot-War.webp';
+import { motion } from 'framer-motion';
+
+const MotionBox = motion(Box);
 
 const Home = () => {
   const [user, setUser] = useState(null);
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const { titles, labels, messages } = useStrings();
+
+  const bgGradient = useColorModeValue(
+    'linear(to-b, gray.800, gray.700)',
+    'linear(to-b, gray.900, gray.800)'
+  );
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      // Verify token and set user
       fetch('/api/auth/verify', {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -30,36 +41,62 @@ const Home = () => {
         .catch((error) => {
           console.error('Error verifying token:', error);
           localStorage.removeItem('token');
-        });
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      setIsLoading(false);
     }
   }, []);
 
+  if (isLoading) {
+    return (
+      <Flex height="100vh" alignItems="center" justifyContent="center">
+        <Spinner size="xl" color="blue.500" />
+      </Flex>
+    );
+  }
+
   return (
-    <Container maxW="container.xl" centerContent>
-      <VStack spacing={8} align="stretch" py={8}>
-        <Heading
-          as="h1"
-          size="2xl"
-          textAlign="center"
-          color="white"
-          fontFamily="'Press Start 2P', cursive"
-          bgGradient="linear(to-r, #ff00ff, #00ffff)"
-          bgClip="text"
-          letterSpacing="2px"
-          p={4}
-          borderWidth={4}
-          borderColor="#ff00ff"
-          borderRadius="lg"
-          boxShadow="0 0 20px #ff00ff"
+    <Container maxW="container.xl" centerContent minHeight="100vh" py={8}>
+      <VStack spacing={8} align="stretch" width="100%">
+        <MotionBox
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          Bigfoot War!
-        </Heading>
-        <Box
+          <Heading
+            as="h1"
+            size="2xl"
+            textAlign="center"
+            color="white"
+            fontFamily="'Press Start 2P', cursive"
+            bgGradient="linear(to-r, #ff00ff, #00ffff)"
+            bgClip="text"
+            letterSpacing="2px"
+            p={4}
+            borderWidth={4}
+            borderColor="#ff00ff"
+            borderRadius="lg"
+            boxShadow="0 0 20px #ff00ff"
+            width="100%"
+            maxWidth="600px"
+            mx="auto"
+          >
+            {titles.mainTitle}
+          </Heading>
+        </MotionBox>
+        <MotionBox
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           borderWidth={2}
           borderRadius="lg"
           p={8}
-          bgGradient="linear(to-b, gray.800, gray.700)"
+          bgGradient={bgGradient}
           boxShadow="lg"
+          width="100%"
+          maxWidth="600px"
+          mx="auto"
         >
           {!user ? (
             <>
@@ -74,8 +111,9 @@ const Home = () => {
                     _hover={{
                       bgGradient: "linear(to-r, red.500, red.700)",
                     }}
+                    transition="all 0.2s"
                   >
-                    Register
+                    {labels.register}
                   </Button>
                   <Button
                     onClick={() => setShowLogin(true)}
@@ -86,8 +124,9 @@ const Home = () => {
                     _hover={{
                       bgGradient: "linear(to-r, blue.500, blue.700)",
                     }}
+                    transition="all 0.2s"
                   >
-                    Login
+                    {labels.login}
                   </Button>
                 </VStack>
               ) : showRegister ? (
@@ -99,21 +138,36 @@ const Home = () => {
           ) : (
             <Lobby user={user} setUser={setUser} />
           )}
-        </Box>
+        </MotionBox>
+        {!user && !showRegister && !showLogin && (
+          <MotionBox
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <Box position="relative" width="100%" maxWidth="600px" height="300px" mx="auto">
+              <Image
+                src={bigfootWarImage}
+                alt="Bigfoot War"
+                fill
+                style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
+              />
+            </Box>
+            <Text
+              color="white"
+              fontSize="sm"
+              fontFamily="'Press Start 2P', cursive"
+              textAlign="center"
+              mt={4}
+              width="100%"
+              maxWidth="600px"
+              mx="auto"
+            >
+              {messages.gameDescription}
+            </Text>
+          </MotionBox>
+        )}
       </VStack>
-      {!user && !showRegister && !showLogin && (
-        <Text
-          color="white"
-          fontSize="sm"
-          fontFamily="'Press Start 2P', cursive"
-          textAlign="center"
-          mt={4}
-          maxWidth="100%"
-          width="100%"
-        >
-          Bigfoot War throws you into a mythic battle where powerful Bigfoots clash for dominance. Command legendary creatures, each with their own unique abilities, in a card-based duel of strategy and strength. Choose your Bigfoot, unleash devastating attacks, and outsmart your opponent in a game where every decision shapes the outcome. The wilderness is your battleground—can you rise to victory in this legendary struggle of might and wit?
-        </Text>
-      )}
     </Container>
   );
 };

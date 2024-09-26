@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { VStack, HStack, Heading, Box, Text, Button, Tooltip, keyframes, usePrefersReducedMotion, Grid, GridItem } from '@chakra-ui/react';
+import { VStack, HStack, Heading, Box, Text, Button, keyframes, usePrefersReducedMotion, Grid, GridItem } from '@chakra-ui/react';
 import Statistics from './Statistics';
 import Shop from './Shop';
 import Settings from './Settings';
-import HelpTutorial from './HelpTutorial';
 import Account from './Account';
-import { FaChessKing, FaPlay, FaShoppingCart, FaCog, FaQuestionCircle, FaUser, FaSignOutAlt, FaArrowLeft } from 'react-icons/fa';
+import Profile from './Profile';
+import { FaChessKing, FaPlay, FaShoppingCart, FaCog, FaUser, FaArrowLeft, FaChartBar } from 'react-icons/fa';
+import useStrings from '@/hooks/useStrings';
 
-// Add this near the top of your component, outside of the render function
 const pulseAnimation = keyframes`
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
@@ -17,14 +17,11 @@ const pulseAnimation = keyframes`
 const Lobby = ({ user, setUser }) => {
   const [currentView, setCurrentView] = useState('main');
   const prefersReducedMotion = usePrefersReducedMotion();
+  const { titles, labels, messages } = useStrings();
 
   const animation = prefersReducedMotion
     ? undefined
     : `${pulseAnimation} 2s ease-in-out infinite`;
-
-  const handleLogout = () => {
-    setUser(null);
-  };
 
   const renderView = () => {
     switch (currentView) {
@@ -34,37 +31,23 @@ const Lobby = ({ user, setUser }) => {
         return <Shop />;
       case 'settings':
         return <Settings />;
-      case 'help':
-        return <HelpTutorial />;
       case 'account':
         return <Account user={user} setUser={setUser} />;
+      case 'profile':
+        return <Profile user={user} setUser={setUser} />;
       default:
         return (
           <VStack spacing={6} align="stretch">
-            <HStack justifyContent="space-between" alignItems="center">
-              <HStack>
-                <FaChessKing size={24} color="white" />
-                <Text
-                  fontSize="xl"
-                  fontWeight="bold"
-                  color="white"
-                  fontFamily='"Press Start 2P", sans-serif'
-                >
-                  Welcome, {user.username}!
-                </Text>
-              </HStack>
-              <Button
-                size="sm"
-                colorScheme="red"
-                onClick={handleLogout}
-                bgGradient="linear(to-r, red.400, red.600)"
-                _hover={{
-                  bgGradient: "linear(to-r, red.500, red.700)",
-                }}
-                leftIcon={<FaSignOutAlt />}
+            <HStack justifyContent="center" alignItems="center">
+              <FaChessKing size={24} color="white" />
+              <Text
+                fontSize="xl"
+                fontWeight="bold"
+                color="white"
+                fontFamily='"Press Start 2P", sans-serif'
               >
-                Logout
-              </Button>
+                {messages.welcomeUser.replace('{username}', user.username)}
+              </Text>
             </HStack>
             <Grid templateColumns="repeat(2, 1fr)" gap={4}>
               <GridItem colSpan={2}>
@@ -81,11 +64,11 @@ const Lobby = ({ user, setUser }) => {
                   }}
                   boxShadow="0px 4px 10px rgba(0, 255, 0, 0.3)"
                   transition="all 0.3s ease-in-out"
-                  onClick={() => alert('Start New Game feature coming soon!')}
+                  onClick={() => alert(messages.startGameComingSoon)}
                   animation={animation}
                   leftIcon={<FaPlay />}
                 >
-                  Play!
+                  {labels.play}
                 </Button>
               </GridItem>
               <GridItem>
@@ -102,7 +85,7 @@ const Lobby = ({ user, setUser }) => {
                   color="white"
                   leftIcon={<FaShoppingCart />}
                 >
-                  Shop
+                  {labels.shop}
                 </Button>
               </GridItem>
               <GridItem>
@@ -119,23 +102,7 @@ const Lobby = ({ user, setUser }) => {
                   color="white"
                   leftIcon={<FaCog />}
                 >
-                  Settings
-                </Button>
-              </GridItem>
-              <GridItem>
-                <Button
-                  size="lg"
-                  width="full"
-                  height="60px"
-                  colorScheme="teal"
-                  bgGradient="linear(to-r, teal.400, teal.600)"
-                  _hover={{
-                    bgGradient: "linear(to-r, teal.500, teal.700)",
-                  }}
-                  onClick={() => setCurrentView('help')}
-                  leftIcon={<FaQuestionCircle />}
-                >
-                  Help
+                  {labels.settings}
                 </Button>
               </GridItem>
               <GridItem>
@@ -148,11 +115,28 @@ const Lobby = ({ user, setUser }) => {
                   _hover={{
                     bgGradient: "linear(to-r, orange.500, orange.700)",
                   }}
-                  onClick={() => setCurrentView('account')}
+                  onClick={() => setCurrentView('profile')}
                   color="white"
                   leftIcon={<FaUser />}
                 >
-                  Account
+                  {labels.profile}
+                </Button>
+              </GridItem>
+              <GridItem>
+                <Button
+                  size="lg"
+                  width="full"
+                  height="60px"
+                  colorScheme="purple"
+                  bgGradient="linear(to-r, purple.400, purple.600)"
+                  _hover={{
+                    bgGradient: "linear(to-r, purple.500, purple.700)",
+                  }}
+                  onClick={() => setCurrentView('statistics')}
+                  color="white"
+                  leftIcon={<FaChartBar />}
+                >
+                  {labels.statistics}
                 </Button>
               </GridItem>
             </Grid>
@@ -166,7 +150,7 @@ const Lobby = ({ user, setUser }) => {
       <Heading as="h2" size="lg" textAlign="center" color="white">
         <HStack justifyContent="center" spacing={2}>
           <FaChessKing />
-          <Text>Lobby</Text>
+          <Text>{titles.lobby}</Text>
         </HStack>
       </Heading>
       <Box
@@ -191,7 +175,7 @@ const Lobby = ({ user, setUser }) => {
             color="white"
             leftIcon={<FaArrowLeft />}
           >
-            Back to Lobby
+            {labels.backToLobby}
           </Button>
         )}
       </Box>

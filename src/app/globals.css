@@ -1,11 +1,15 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&family=VT323&display=swap');
 
 /* Your custom styles below */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-primary: 'Press Start 2P', cursive;
+  --font-secondary: 'Roboto Mono', monospace;
+  --font-accent: 'VT323', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,7 +22,36 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+}
+
+h1, h2, h3, .menu-item, .button-text {
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+}
+
+.status-effect, .power-up {
+  font-family: var(--font-accent);
+}
+
+/* Example usage */
+.game-title {
+  font-size: 48px;
+  font-family: var(--font-primary);
+  text-shadow: 3px 3px 0px #000000;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+}
+
+.status-effect {
+  font-family: var(--font-accent);
+  font-size: 20px;
 }
 
 @layer utilities {
