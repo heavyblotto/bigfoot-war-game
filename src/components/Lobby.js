@@ -3,7 +3,6 @@ import { VStack, HStack, Heading, Box, Text, Button, keyframes, usePrefersReduce
 import Statistics from './Statistics';
 import Shop from './Shop';
 import Settings from './Settings';
-import Account from './Account';
 import Profile from './Profile';
 import { FaChessKing, FaPlay, FaShoppingCart, FaCog, FaUser, FaArrowLeft, FaChartBar } from 'react-icons/fa';
 import useStrings from '@/hooks/useStrings';
@@ -31,8 +30,6 @@ const Lobby = ({ user, setUser }) => {
         return <Shop />;
       case 'settings':
         return <Settings />;
-      case 'account':
-        return <Account user={user} setUser={setUser} />;
       case 'profile':
         return <Profile user={user} setUser={setUser} />;
       default:

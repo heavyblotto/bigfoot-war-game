@@ -1,75 +1,106 @@
 # Authentication System Design
 
 ## Overview
-This document outlines the design and implementation of the authentication system for the Bigfoot War project. The system includes user registration, login functionality, and a simple player profile. The design leverages Next.js API routes for backend logic, Zustand for state management, and Chakra UI for UI components.
+This document outlines the design and implementation of the authentication system for the Bigfoot War project. The system includes user registration, login functionality, and a player profile. The design leverages Next.js API routes for backend logic, Zustand for state management, and Chakra UI for UI components.
 
-## Implementation Details
+## Current Implementation
+
+### Database Schema
+The User model in the database schema is defined as follows:
+
+```prisma
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String?  @unique
+  password  String
+  profile   Json     @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
 
 ### API Routes
 - **register.js**: Handles user registration with optional email.
 - **login.js**: Handles user login.
-- **verify.js**: Verifies user token for authentication persistence.
-
-### Database Schema
-The User model in the database schema has been updated to make the email field optional:
-
-```
-prisma:prisma/schema.prisma
-startLine: 10
-endLine: 18
-```
+- **update-email.js**: Updates user email (not integrated into UI).
+- **update-password.js**: Updates user password (not integrated into UI).
 
 ### Registration Process
 - Users can register with a username and password.
 - Email is optional during registration.
-- The registration form in the frontend reflects this change:
 
 ### Login Process
 - Users can log in using their username and password.
-- The login process remains unchanged, but the backend now handles the possibility of users without an email.
+- JWT is used for authentication.
 
 ### State Management
 - Zustand is used to manage user state across the application.
 
 ### Player Profile
-- A simple profile component displays user information, including the email if provided.
+- A profile component exists but currently uses mock data instead of real user data.
 
 ### Forms
 - Registration and login forms use Chakra UI components for consistent styling and accessibility.
 
+## Planned Improvements
+
+### 1. Enhance User Model
+- Update the User model to include game-related fields such as level, xp, achievements, and inventory.
+
+### 2. Update Profile Component
+- Modify the Profile component to use real user data.
+- Implement API route to fetch user profile data.
+- Integrate email and password update functionality into the UI.
+
+### 3. Implement Account Deletion
+- Create API route for account deletion.
+- Add account deletion option to the Profile component.
+
+### 4. Enhance Authentication Persistence
+- Implement token refresh mechanism.
+- Store refresh token in HTTP-only cookie.
+- Create middleware to check and refresh tokens on protected routes.
+
+### 5. Email Verification
+- Implement email verification process for new accounts.
+- Create API route for sending verification emails.
+
+### 6. Password Reset Functionality
+- Implement "Forgot Password" feature.
+- Create API routes for password reset request and confirmation.
+
+### 7. User Settings Page
+- Create a dedicated settings page for users to manage preferences.
+- Implement API routes for updating user settings.
+
+### 8. Security Enhancements
+- Implement rate limiting on authentication routes.
+- Add CSRF protection.
+- Enhance password requirements and validation.
+
 ## Design Rationale
 
 ### Flexibility
-- Making email optional allows for a smoother registration process while still providing the option for account recovery in the future.
+- Optional email registration allows for a smoother onboarding process while still providing the option for account recovery in the future.
 
 ### Alignment with Project Conventions
 - The implementation follows the project's conventions for state management, form handling, and UI components.
 
-### Simplicity and Scalability
-- The design remains simple and easy to understand, while allowing for future enhancements like email verification or password recovery.
+### Scalability
+- The planned improvements will enhance the authentication system's robustness and feature set, preparing it for future growth.
 
 ## Impact on the Project
 
 ### Core System Features
-- The "User Authentication" feature has been updated to include optional email registration.
+- The authentication system forms the foundation for user management and game progression tracking.
 
 ### Technical Features
-- The database schema and API routes have been adjusted to accommodate optional email addresses.
+- The database schema and API routes will be expanded to accommodate new user-related functionalities.
 
 ### Documentation and Conventions
-- This document has been updated to reflect the changes in the authentication system.
-- The `docs/database.md` file should be updated to reflect the change in the User schema.
-
-## Future Improvements
-
-### Email Verification
-- Implement an email verification system for users who choose to provide an email address.
-
-### Password Recovery
-- Develop a password recovery feature for users with registered email addresses.
-
-### Enhanced Profile Management
-- Allow users to add or change their email address after registration.
+- This document will be regularly updated to reflect changes in the authentication system.
+- Other documentation, including `database.md`, will be updated to maintain consistency.
 
 ## Conclusion
-The updated authentication system provides a flexible approach to user registration and management, aligning with the project's goals of simplicity and scalability. The optional email feature balances user convenience with the potential for future account management features.
+The current authentication system provides basic functionality, with a clear roadmap for enhancements. The planned improvements will significantly boost the system's capabilities, providing a more robust and feature-rich user management experience aligned with the project's goals of simplicity, scalability, and security.

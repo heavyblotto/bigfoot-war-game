@@ -197,3 +197,16 @@ When implementing images in our Next.js project, follow these guidelines:
 7. Optimize images for web use before adding them to the project. Consider using WebP format for better performance.
 
 By following these conventions, we ensure consistent and optimized image implementation across our project.
+
+## State Management Conventions
+
+1. Use Zustand for global state management
+2. Create separate stores for different domains (e.g., userStore, gameStore)
+3. Use the `create` function from Zustand to create stores
+4. Implement actions within the store to modify state
+5. Use the `useStore` hook to access state in components
+6. Avoid using React's `useState` for global state
+7. Use the `persist` middleware for stores that need to persist data
+8. Keep store implementations in the `src/store/` directory
+9. Use custom hooks in `src/hooks/` to encapsulate common state-related logic
+10. When updating state, always use the store's actions rather than modifying state directly
