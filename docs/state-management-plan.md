@@ -1,151 +1,91 @@
 # State Management Plan
 
 ## Current State
-- Zustand is intended to be used for state management but not fully implemented.
-- Some components (e.g., Profile, Account) are using local state and prop drilling.
+- Zustand has been partially implemented for state management.
+- userStore, authStore, and gameStore have been created and are being used in some components.
+- A custom useAuth hook has been implemented to encapsulate common auth operations.
+- gameStore.js is correctly integrated and used in the application.
 
-## Transition Plan to Zustand
+## Remaining Tasks
 
-### 1. Create Zustand Stores
+### 1. Update Remaining Components
 
-Create the following stores in `src/store/`:
+Refactor any remaining components to use Zustand stores instead of local state and prop drilling.
 
-a. `userStore.js`:
-```javascript
-import create from 'zustand';
+### 2. Review and Update API Calls
 
-export const useUserStore = create((set) => ({
-  user: null,
-  setUser: (user) => set({ user }),
-  updateUser: (updates) => set((state) => ({ user: { ...state.user, ...updates } })),
-  clearUser: () => set({ user: null }),
-}));
-```
+Ensure all API calls are correctly updating the Zustand stores:
 
-b. `authStore.js`:
-```javascript
-import create from 'zustand';
+a. Review the following API handlers:
+- Login (/api/auth/login)
+- Registration (/api/auth/register)
+- Update Email (/api/auth/update-email)
+- Update Password (/api/auth/update-password)
+- Logout (client-side)
 
-export const useAuthStore = create((set) => ({
-  isAuthenticated: false,
-  token: null,
-  setAuth: (isAuthenticated, token) => set({ isAuthenticated, token }),
-  clearAuth: () => set({ isAuthenticated: false, token: null }),
-}));
-```
+b. Verify that API handlers are updating stores correctly:
+1. Login handler:
+- Confirm it's updating both userStore and authStore on successful login.
+2. Registration handler:
+- Ensure it's updating both stores on successful registration.
+3. Update email handler:
+- Verify it's updating the user store on successful email update.
+4. Update password handler:
+- Confirm error handling is consistent with other handlers.
+5. Logout functionality:
+- Ensure it's clearing both userStore and authStore.
 
-c. `gameStore.js` (for game-related state):
-```javascript
-import create from 'zustand';
+Status: done.
 
-export const useGameStore = create((set) => ({
-  gameState: null,
-  setGameState: (gameState) => set({ gameState }),
-  // Add more game-related state and actions as needed
-}));
-```
+### 3. Implement Persistence for User Store
 
-### 2. Update Components
+Add persistence to the user store (similar to what's already done for the auth store):
+- Update `userStore.js` to include persistence:
+  ```javascript
+  import { create } from 'zustand';
+  import { persist } from 'zustand/middleware';
 
-Refactor components to use Zustand stores instead of local state and prop drilling. For example:
+  export const useUserStore = create(
+    persist(
+      (set) => ({
+        // ... existing store logic
+      }),
+      {
+        name: 'user-storage',
+        getStorage: () => localStorage,
+      }
+    )
+  );
+  ```
 
-a. Update `Profile.js`:
-```javascript
-import { useUserStore } from '@/store/userStore';
+Status: done.
 
-const Profile = () => {
-  const { user, updateUser } = useUserStore();
-  // Use user data from the store and updateUser for modifications
-  // ...
-};
-```
+### 4. Update Route Guards
 
-b. Update `Account.js`:
-```javascript
-import { useUserStore } from '@/store/userStore';
+Modify route guards to use Zustand stores for checking authentication status. This may involve updating the middleware:
+- Update middleware to use `useAuthStore`:
+  ```javascript
+  import { useAuthStore } from '@/store/authStore';
 
-const Account = () => {
-  const { user, updateUser } = useUserStore();
-  // Use user data from the store and updateUser for modifications
-  // ...
-};
-```
-
-### 3. Update API Calls
-
-Modify API calls to update Zustand stores directly. For example, in login and registration handlers:
-
-```javascript
-import { useUserStore } from '@/store/userStore';
-import { useAuthStore } from '@/store/authStore';
-
-const handleLogin = async (credentials) => {
-  // ... perform login API call
-  if (success) {
-    useUserStore.getState().setUser(userData);
-    useAuthStore.getState().setAuth(true, token);
+  export function middleware(request) {
+    const isAuthenticated = useAuthStore.getState().isAuthenticated;
+    // Use isAuthenticated to determine route access
+    // ...
   }
-};
-```
+  ```
+Status: done.
 
-### 4. Implement Persistence
+### 5. Testing and Debugging
 
-Use Zustand middleware to persist authentication state:
+Perform thorough testing of the state management implementation:
+- Test all components that use Zustand stores
+- Verify that state updates are reflected correctly across the application
+- Test persistence by refreshing the page and checking if state is maintained
+- Debug any issues that arise during testing
 
-```javascript
-import create from 'zustand';
-import { persist } from 'zustand/middleware';
-
-export const useAuthStore = create(
-  persist(
-    (set) => ({
-      // ... existing store logic
-    }),
-    {
-      name: 'auth-storage',
-      getStorage: () => localStorage,
-    }
-  )
-);
-```
-
-### 5. Create Custom Hooks
-
-Develop custom hooks to encapsulate common state operations:
-
-```javascript
-export const useAuth = () => {
-  const { isAuthenticated, token } = useAuthStore();
-  const { user } = useUserStore();
-
-  const login = async (credentials) => {
-    // ... login logic
-  };
-
-  const logout = () => {
-    useAuthStore.getState().clearAuth();
-    useUserStore.getState().clearUser();
-  };
-
-  return { isAuthenticated, token, user, login, logout };
-};
-```
-
-### 6. Update Route Guards
-
-Modify route guards to use Zustand stores for checking authentication status.
-
-### Implementation Timeline
-
-1. Create Zustand stores (1 day)
-2. Update main components (Profile, Account, Login, Register) (2-3 days)
-3. Refactor API calls and state updates (1-2 days)
-4. Implement persistence and custom hooks (1 day)
-5. Update route guards and perform thorough testing (1-2 days)
-
-Total estimated time: 6-9 days
+Status: done.
 
 ## Conclusion
 
-This plan outlines a comprehensive approach to fully implement Zustand for state management across the application. It will result in more predictable state updates, easier management of global state, and improved performance by reducing unnecessary re-renders.
+This updated plan builds upon the progress already made in implementing Zustand for state management. By completing these remaining tasks, we will achieve a fully integrated state management system across the application, resulting in more predictable state updates, easier management of global state, and improved performance by reducing unnecessary re-renders.
 

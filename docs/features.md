@@ -24,9 +24,7 @@ This document outlines the features of the Bigfoot War project, including both f
      - View Statistics
      - Shop
      - Settings
-     - Help/Tutorial
-     - Account Management
-   - Display player statistics and achievements
+     - Profile Management
    - Status: Partially Implemented
 
 4. **Bigfoot Character System**

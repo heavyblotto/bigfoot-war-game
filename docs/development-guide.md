@@ -20,11 +20,20 @@
 - `src/store/`: Zustand stores for state management
 - `src/data/`: JSON files for game data
 
+## State Management
+
+- Use Zustand for global state management
+- Create stores in `src/store/` directory
+- Use hooks from `src/hooks/` to access and modify state
+- Avoid using local component state for data that should be shared across components
+- When creating new features, consider if the state should be local or global
+- Use the `useAuth` hook for authentication-related state and actions
+
 ## Adding New Features
 1. Update the game design document if necessary
 2. Create new components in `src/components/`
 3. Update or create new Zustand stores if needed
-4. Implement the feature logic
+4. Implement the feature logic using proper state management techniques
 5. Update the features list in `docs/features.md`
 
 ## Resources

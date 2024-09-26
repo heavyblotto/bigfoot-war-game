@@ -1,87 +1,61 @@
+'use client';
+
 import { useState } from 'react';
-import { VStack, HStack, FormControl, FormLabel, Input, Button, Heading, Text } from '@chakra-ui/react';
-import useStrings from '@/hooks/useStrings';
+import { useAuth } from '@/hooks/useAuth';
+import { Box, Button, FormControl, FormLabel, Input, VStack, Text, HStack } from '@chakra-ui/react';
+import { useUserStore } from '@/store/userStore';
+import { useAuthStore } from '@/store/authStore';
 
-const Login = ({ setUser, onCancel }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const { titles, labels, messages, tooltips } = useStrings();
+const Login = ({ onCancel }) => {
+  const setUser = useUserStore(state => state.setUser);
+  const setAuth = useAuthStore(state => state.setAuth);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError('');
+  const handleLogin = async (credentials) => {
     try {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(credentials),
       });
       const data = await response.json();
       if (response.ok) {
         setUser(data.user);
-        localStorage.setItem('token', data.token);
+        setAuth(true, data.token);
+        // Handle successful login (e.g., redirect to dashboard)
       } else {
-        setError(data.error || messages.loginError);
+        // Handle login error
+        console.error(data.error);
       }
     } catch (error) {
-      setError(messages.loginError);
+      console.error('Login error:', error);
+    }
+  };
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useAuth();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    const result = await login({ username, password });
+    if (!result.success) {
+      setError(result.error);
     }
   };
 
   return (
-    <VStack spacing={4} align="stretch">
-      <Heading as="h2" size="lg" textAlign="center" color="white" fontFamily="'Press Start 2P', cursive">
-        {titles.login}
-      </Heading>
-      {error && (
-        <Text color="red.500" textAlign="center" mb={4} fontFamily="'Roboto', sans-serif">
-          {error}
-        </Text>
-      )}
-      <form onSubmit={handleLogin}>
+    <Box maxWidth="400px" margin="auto">
+      <form onSubmit={handleSubmit}>
         <VStack spacing={4}>
-          <FormControl>
-            <FormLabel color="white" fontFamily="'Press Start 2P', cursive" fontSize="sm">{labels.username}</FormLabel>
-            <Input 
-              type="text" 
-              value={username} 
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder={tooltips.username}
-              bg="gray.800"
-              color="white"
-              border="1px"
-              borderColor="gray.600"
-              _hover={{
-                borderColor: "gray.500"
-              }}
-              _focus={{
-                borderColor: "blue.300",
-                boxShadow: "0 0 0 1px #63B3ED"
-              }}
-              fontFamily="'Roboto', sans-serif"
-            />
+          <FormControl id="username" isRequired>
+            <FormLabel>Username</FormLabel>
+            <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
           </FormControl>
-          <FormControl>
-            <FormLabel color="white" fontFamily="'Press Start 2P', cursive" fontSize="sm">{labels.password}</FormLabel>
-            <Input 
-              type="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder={tooltips.password}
-              bg="gray.800"
-              color="white"
-              border="1px"
-              borderColor="gray.600"
-              _hover={{
-                borderColor: "gray.500"
-              }}
-              _focus={{
-                borderColor: "blue.300",
-                boxShadow: "0 0 0 1px #63B3ED"
-              }}
-              fontFamily="'Roboto', sans-serif"
-            />
+          <FormControl id="password" isRequired>
+            <FormLabel>Password</FormLabel>
+            <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </FormControl>
           <HStack spacing={4} width="full">
             <Button
@@ -91,7 +65,7 @@ const Login = ({ setUser, onCancel }) => {
               bgGradient="linear(to-r, blue.400, blue.600)"
               _hover={{}} // Remove hover effect
             >
-              {labels.login}
+              Login
             </Button>
             <Button
               width="full"
@@ -102,12 +76,13 @@ const Login = ({ setUser, onCancel }) => {
                 bg: "gray.600"
               }}
             >
-              {labels.cancel}
+              Cancel
             </Button>
           </HStack>
+          {error && <Text color="red.500">{error}</Text>}
         </VStack>
       </form>
-    </VStack>
+    </Box>
   );
 };
 

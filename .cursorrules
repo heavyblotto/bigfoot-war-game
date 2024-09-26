@@ -226,6 +226,66 @@
       "description": "Ensure route groups are properly used in the App Router structure.",
       "pattern": "src/app/**/(*)/**",
       "message": "Route groups should be properly structured. See [conventions.md](docs/conventions.md) for details."
+    },
+    {
+      "name": "Zustand Store Creation",
+      "description": "Ensure Zustand stores are created correctly in the src/store directory.",
+      "pattern": "src/store/**/*.js",
+      "message": "Zustand stores should be created using the 'create' function from Zustand. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "export const use\\w+Store = create\\(",
+        "message": "Use the 'create' function to create Zustand stores. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Zustand Store Usage in Components",
+      "description": "Ensure components use Zustand stores for global state management.",
+      "pattern": "src/components/**/*.js",
+      "message": "Use Zustand stores for global state management in components. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "const \\{.*\\} = use\\w+Store\\(\\)",
+        "message": "Use Zustand stores for accessing global state in components. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Avoid React useState for Global State",
+      "description": "Ensure React's useState is not used for global state management.",
+      "pattern": "src/**/*.js",
+      "message": "Avoid using React's useState for global state management. Use Zustand stores instead. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "const \\[\\w+, set\\w+\\] = useState\\(",
+        "message": "Consider using Zustand for global state management instead of React's useState. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Use Store Actions for State Modifications",
+      "description": "Ensure state modifications are done through store actions.",
+      "pattern": "src/**/*.js",
+      "message": "Use store actions to modify state. Avoid direct state mutations. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "set\\(.*\\)",
+        "message": "Use store actions to modify state. Avoid direct state mutations. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Custom Hooks for State Logic",
+      "description": "Encourage the use of custom hooks for encapsulating state-related logic.",
+      "pattern": "src/hooks/**/*.js",
+      "message": "Use custom hooks to encapsulate common state-related logic. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "export const use\\w+ = \\(",
+        "message": "Create custom hooks to encapsulate common state-related logic. See [conventions.md](docs/conventions.md) for details."
+      }
+    },
+    {
+      "name": "Persist Middleware Usage",
+      "description": "Ensure the persist middleware is used for stores that need to persist data.",
+      "pattern": "src/store/**/*.js",
+      "message": "Use the persist middleware for stores that need to persist data. See [conventions.md](docs/conventions.md) for details.",
+      "regex": {
+        "pattern": "persist\\(",
+        "message": "Consider using the persist middleware for stores that need to persist data. See [conventions.md](docs/conventions.md) for details."
+      }
     }
   ]
 }

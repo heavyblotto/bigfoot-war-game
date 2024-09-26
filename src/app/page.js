@@ -9,15 +9,17 @@ import Lobby from '../components/Lobby';
 import useStrings from '@/hooks/useStrings';
 import bigfootWarImage from '@/assets/images/Bigfoot-War.webp';
 import { motion } from 'framer-motion';
+import { useUserStore } from '@/store/userStore';
 
 const MotionBox = motion(Box);
 
 const Home = () => {
-  const [user, setUser] = useState(null);
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { titles, labels, messages } = useStrings();
+  const user = useUserStore(state => state.user);
+  const setUser = useUserStore(state => state.setUser);
 
   const bgGradient = useColorModeValue(
     'linear(to-b, gray.800, gray.700)',
@@ -132,7 +134,7 @@ const Home = () => {
               ) : showRegister ? (
                 <Register setUser={setUser} onCancel={() => setShowRegister(false)} />
               ) : (
-                <Login setUser={setUser} onCancel={() => setShowLogin(false)} />
+                <Login onCancel={() => setShowLogin(false)} />
               )}
             </>
           ) : (

@@ -1,20 +1,13 @@
-import { NextResponse } from 'next/server';
-import { verifyAuth } from './lib/auth';
+import { useAuthStore } from '@/store/authStore';
 
-export async function middleware(request) {
-  const token = request.cookies.get('token')?.value;
+export function middleware(request) {
+  const isAuthenticated = useAuthStore.getState().isAuthenticated;
+  const protectedRoutes = ['/protected-route1', '/protected-route2']; // Add your protected routes here
 
-  const verifiedToken = token && (await verifyAuth(token).catch((err) => console.log(err)));
-
-  if (request.nextUrl.pathname.startsWith('/api/auth') && !verifiedToken) {
-    return;
+  if (protectedRoutes.includes(request.url) && !isAuthenticated) {
+    return new Response('Unauthorized', { status: 401 });
   }
 
-  if (!verifiedToken) {
-    return NextResponse.redirect(new URL('/login', request.url));
-  }
+  // Continue with the request if authenticated or if the route is not protected
+  return fetch(request);
 }
-
-export const config = {
-  matcher: ['/api/auth/:path*'],
-};
