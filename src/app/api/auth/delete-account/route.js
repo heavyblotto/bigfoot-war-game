@@ -18,8 +18,17 @@ export async function DELETE(request) {
 
     const userId = decodedToken.userId;
 
-    await prisma.user.delete({
-      where: { id: userId },
+    // Delete the user and associated player in a transaction
+    await prisma.$transaction(async (prisma) => {
+      // Delete the associated player first (if it exists)
+      await prisma.player.deleteMany({
+        where: { userId: userId },
+      });
+
+      // Then delete the user
+      await prisma.user.delete({
+        where: { id: userId },
+      });
     });
 
     return NextResponse.json({ message: 'Account deleted successfully' });

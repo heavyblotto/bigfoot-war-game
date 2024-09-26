@@ -10,16 +10,16 @@ const Profile = () => {
   const { logout } = useAuth();
   const toast = useToast();
   const { token } = useAuthStore();
+  
+  console.log('Token in Profile component:', token);
 
   const [message, setMessage] = useState('');
   const [newEmail, setNewEmail] = useState('');
 
   const handleUpdateEmail = async () => {
     try {
-      if (!token) {
-        throw new Error('Token is missing');
-      }
-
+      console.log('Current auth state:', useAuthStore.getState());
+      console.log('Token being sent:', token);
       const response = await fetch('/api/auth/update-email', {
         method: 'POST',
         headers: { 
@@ -28,33 +28,28 @@ const Profile = () => {
         },
         body: JSON.stringify({ email: newEmail }),
       });
-
+      console.log('Response status:', response.status);
       const data = await response.json();
-
+      console.log('Response data:', data);
       if (response.ok) {
-        updateUser({ email: newEmail });
+        updateUser(data.user);
         toast({
-          title: "Email updated.",
-          description: "Your email has been successfully updated.",
+          title: "Email updated successfully",
           status: "success",
-          duration: 5000,
+          duration: 3000,
           isClosable: true,
         });
+        setNewEmail('');
       } else {
-        toast({
-          title: "Error updating email.",
-          description: data.error || "An error occurred while updating your email.",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-        });
+        throw new Error(data.error || 'Failed to update email');
       }
     } catch (error) {
+      console.error('Error in handleUpdateEmail:', error);
       toast({
-        title: "Error updating email.",
-        description: "An unexpected error occurred. Please try again later.",
+        title: "Error updating email",
+        description: error.message,
         status: "error",
-        duration: 5000,
+        duration: 3000,
         isClosable: true,
       });
     }
@@ -104,8 +99,8 @@ const Profile = () => {
         </HStack>
         <Text><strong>Username:</strong> {user?.username}</Text>
         <Text><strong>Email:</strong> {user?.email}</Text>
-        <Text><strong>Level:</strong> {user?.level || 1}</Text>
-        <Text><strong>XP:</strong> {user?.xp || 0}</Text>
+        <Text><strong>Level:</strong> {user?.player?.level || 1}</Text>
+        <Text><strong>XP:</strong> {user?.player?.xp || 0}</Text>
         <Text><strong>Joined:</strong> {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}</Text>
         <Box
           borderWidth={2}

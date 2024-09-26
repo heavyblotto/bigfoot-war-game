@@ -9,28 +9,6 @@ import { useAuthStore } from '@/store/authStore';
 const Login = ({ onCancel }) => {
   const setUser = useUserStore(state => state.setUser);
   const setAuth = useAuthStore(state => state.setAuth);
-
-  const handleLogin = async (credentials) => {
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setUser(data.user);
-        setAuth(true, data.token);
-        // Handle successful login (e.g., redirect to dashboard)
-      } else {
-        // Handle login error
-        console.error(data.error);
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-    }
-  };
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -39,9 +17,23 @@ const Login = ({ onCancel }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    const result = await login({ username, password });
-    if (!result.success) {
-      setError(result.error);
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setUser(data.user);
+        setAuth(true, data.token);
+        // You might want to add a redirect here or call a function passed as prop
+      } else {
+        setError(data.error || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('An unexpected error occurred');
     }
   };
 
@@ -63,7 +55,9 @@ const Login = ({ onCancel }) => {
               width="full"
               type="submit"
               bgGradient="linear(to-r, blue.400, blue.600)"
-              _hover={{}} // Remove hover effect
+              _hover={{
+                bgGradient: "linear(to-r, blue.500, blue.700)",
+              }}
             >
               Login
             </Button>
