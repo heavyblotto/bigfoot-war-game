@@ -73,7 +73,7 @@ const Profile = ({ user, setUser }) => {
 
   return (
     <VStack spacing={6} align="stretch">
-      <Heading as="h2" size="lg" textAlign="center" color="white">
+      <Heading as="h2" size="lg" textAlign="center" color="white" fontFamily="'Press Start 2P', cursive">
         {titles.profile}
       </Heading>
       <Box
@@ -93,52 +93,52 @@ const Profile = ({ user, setUser }) => {
             fallbackSrc="https://via.placeholder.com/100"
           />
           <VStack align="start" spacing={1}>
-            <Text fontSize="2xl" fontWeight="bold" color="white">{user.username}</Text>
-            <Text color="gray.300">Level {playerLevel}</Text>
-            <Text color="gray.300">Joined: {dateJoined}</Text>
+            <Text fontSize="2xl" fontWeight="bold" color="white" fontFamily="'Press Start 2P', cursive">{user.username}</Text>
+            <Text color="gray.300" fontFamily="'Roboto', sans-serif">Level {playerLevel}</Text>
+            <Text color="gray.300" fontFamily="'Roboto', sans-serif">Joined: {dateJoined}</Text>
           </VStack>
         </HStack>
 
         {/* TODO: Implement real XP progress tracking */}
-        <Text color="white" mb={2}>XP Progress</Text>
+        <Text color="white" mb={2} fontFamily="'Press Start 2P', cursive">XP Progress</Text>
         <Progress value={(xp / xpToNextLevel) * 100} colorScheme="green" mb={4} />
-        <Text color="gray.300" mb={4}>{xp} / {xpToNextLevel} XP</Text>
+        <Text color="gray.300" mb={4} fontFamily="'Roboto', sans-serif">{xp} / {xpToNextLevel} XP</Text>
 
         {/* TODO: Implement real achievement system */}
-        <Heading as="h3" size="md" color="white" mb={2}>
+        <Heading as="h3" size="md" color="white" mb={2} fontFamily="'Press Start 2P', cursive">
           {labels.achievements}
         </Heading>
         <VStack align="start" spacing={2} mb={4}>
           {achievements.map(achievement => (
             <HStack key={achievement.id}>
               <FaTrophy color={achievement.unlocked ? "gold" : "gray"} />
-              <Text color={achievement.unlocked ? "white" : "gray.500"}>{achievement.name}</Text>
+              <Text color={achievement.unlocked ? "white" : "gray.500"} fontFamily="'Roboto', sans-serif">{achievement.name}</Text>
             </HStack>
           ))}
         </VStack>
 
         {/* TODO: Implement real inventory system */}
-        <Heading as="h3" size="md" color="white" mb={2}>
+        <Heading as="h3" size="md" color="white" mb={2} fontFamily="'Press Start 2P', cursive">
           {labels.inventory}
         </Heading>
         <VStack align="start" spacing={2} mb={4}>
           {inventory.map(item => (
-            <Text key={item.id} color="white">{item.name} x{item.quantity}</Text>
+            <Text key={item.id} color="white" fontFamily="'Roboto', sans-serif">{item.name} x{item.quantity}</Text>
           ))}
         </VStack>
 
         {/* Account Management Section */}
-        <Heading as="h3" size="md" color="white" mb={4}>
+        <Heading as="h3" size="md" color="white" mb={4} fontFamily="'Press Start 2P', cursive">
           {titles.accountManagement}
         </Heading>
         {message && (
-          <Text color="green.300" mb={4}>
+          <Text color="green.300" mb={4} fontFamily="'Roboto', sans-serif">
             {message}
           </Text>
         )}
         <form onSubmit={handleUpdateEmail}>
           <FormControl mb={4}>
-            <FormLabel color="white">{labels.email}</FormLabel>
+            <FormLabel color="white" fontFamily="'Press Start 2P', cursive" fontSize="sm">{labels.email}</FormLabel>
             <Input
               type="email"
               value={email}
@@ -154,6 +154,7 @@ const Profile = ({ user, setUser }) => {
                 borderColor: "blue.300",
                 boxShadow: "0 0 0 1px #63B3ED"
               }}
+              fontFamily="'Roboto', sans-serif"
             />
           </FormControl>
           <Button
@@ -168,7 +169,7 @@ const Profile = ({ user, setUser }) => {
         </form>
         <form onSubmit={handleUpdatePassword}>
           <FormControl mb={4}>
-            <FormLabel color="white">{labels.newPassword}</FormLabel>
+            <FormLabel color="white" fontFamily="'Press Start 2P', cursive" fontSize="sm">{labels.newPassword}</FormLabel>
             <Input
               type="password"
               value={password}
@@ -184,6 +185,7 @@ const Profile = ({ user, setUser }) => {
                 borderColor: "blue.300",
                 boxShadow: "0 0 0 1px #63B3ED"
               }}
+              fontFamily="'Roboto', sans-serif"
             />
           </FormControl>
           <Button

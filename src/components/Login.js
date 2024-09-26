@@ -31,18 +31,18 @@ const Login = ({ setUser, onCancel }) => {
 
   return (
     <VStack spacing={4} align="stretch">
-      <Heading as="h2" size="lg" textAlign="center" color="white">
+      <Heading as="h2" size="lg" textAlign="center" color="white" fontFamily="'Press Start 2P', cursive">
         {titles.login}
       </Heading>
       {error && (
-        <Text color="red.500" textAlign="center" mb={4}>
+        <Text color="red.500" textAlign="center" mb={4} fontFamily="'Roboto', sans-serif">
           {error}
         </Text>
       )}
       <form onSubmit={handleLogin}>
         <VStack spacing={4}>
           <FormControl>
-            <FormLabel color="white">{labels.username}</FormLabel>
+            <FormLabel color="white" fontFamily="'Press Start 2P', cursive" fontSize="sm">{labels.username}</FormLabel>
             <Input 
               type="text" 
               value={username} 
@@ -59,10 +59,11 @@ const Login = ({ setUser, onCancel }) => {
                 borderColor: "blue.300",
                 boxShadow: "0 0 0 1px #63B3ED"
               }}
+              fontFamily="'Roboto', sans-serif"
             />
           </FormControl>
           <FormControl>
-            <FormLabel color="white">{labels.password}</FormLabel>
+            <FormLabel color="white" fontFamily="'Press Start 2P', cursive" fontSize="sm">{labels.password}</FormLabel>
             <Input 
               type="password" 
               value={password} 
@@ -79,6 +80,7 @@ const Login = ({ setUser, onCancel }) => {
                 borderColor: "blue.300",
                 boxShadow: "0 0 0 1px #63B3ED"
               }}
+              fontFamily="'Roboto', sans-serif"
             />
           </FormControl>
           <HStack spacing={4} width="full">

@@ -7,17 +7,13 @@ This document outlines the flow and user experience for the Bigfoot War game, ba
 1. Landing Page
    - Title "Bigfoot War!"
    - Login and Register buttons (for new users)
-   - Play button (for returning logged-in users)
-   - Quick Play button (for guests or returning users)
 
 2. Main Menu / Lobby
    - Start New Game
-   - Join Existing Game
+   - View profile
    - View Statistics
    - Shop
    - Settings
-   - Help/Tutorial
-   - Logout
 
 3. Character Selection
    - Grid or carousel of available Bigfoot characters
@@ -26,7 +22,7 @@ This document outlines the flow and user experience for the Bigfoot War game, ba
 
 4. Opponent Matching
    - Display available opponents based on player's level
-   - Allow player to choose an opponent or opt for random matching
+   - Allow player to choose an opponent
 
 5. Game Screen
    - Player and opponent Bigfoot characters displayed
