@@ -12,30 +12,40 @@ export async function POST(request) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const userData = {
-      username,
-      password: hashedPassword,
-    };
-
-    if (email) {
-      userData.email = email;
-    }
-
     const user = await prisma.user.create({
-      data: userData,
+      data: {
+        username,
+        password: hashedPassword,
+        email,
+        player: {
+          create: {
+            xp: 0,
+            level: 1
+          }
+        }
+      },
+      include: {
+        player: true
+      }
     });
 
     return NextResponse.json({ 
       user: { 
         id: user.id, 
         username: user.username, 
-        email: user.email 
+        email: user.email,
+        player: {
+          id: user.player.id,
+          xp: user.player.xp,
+          level: user.player.level
+        }
       } 
     });
   } catch (error) {
     if (error.code === 'P2002') {
       return NextResponse.json({ error: 'Username or email already exists' }, { status: 400 });
     }
+    console.error('Registration error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

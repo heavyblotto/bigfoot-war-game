@@ -127,7 +127,6 @@ Status effects generally last 1-3 rounds and can be applied through cards, Bigfo
 - Luck
 - Hit Points (HP)
 - Defense Points (DP)
-- Experience Points (XP)
 
 ### Types
 1. **Dwarf**: Lucky, potentially resistant to certain status effects
@@ -136,7 +135,6 @@ Status effects generally last 1-3 rounds and can be applied through cards, Bigfo
 
 ### Abilities
 - Class-specific abilities with upgrade options
-- Cooldowns and resource costs
 - Some abilities can inflict or counter status effects
 
 ## Game Rules

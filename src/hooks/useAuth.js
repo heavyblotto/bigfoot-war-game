@@ -14,6 +14,7 @@ export const useAuth = () => {
       });
       const data = await response.json();
       if (response.ok) {
+        console.log('Received token after login:', data.token);
         setUser(data.user);
         setAuth(true, data.token);
         return { success: true, user: data.user };
@@ -31,5 +32,9 @@ export const useAuth = () => {
     clearAuth();
   };
 
-  return { user, isAuthenticated, token, login, logout };
+  const updateUser = (updatedUserData) => {
+    setUser(updatedUserData);
+  };
+
+  return { user, isAuthenticated, token, login, logout, updateUser };
 };

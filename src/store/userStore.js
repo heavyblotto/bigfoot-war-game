@@ -6,14 +6,12 @@ export const useUserStore = create(
     (set) => ({
       user: null,
       setUser: (user) => set({ user }),
-      updateUser: (updatedFields) => set((state) => ({
-        user: { ...state.user, ...updatedFields }
-      })),
+      updateUser: (updatedUser) => set((state) => ({ user: { ...state.user, ...updatedUser } })),
       clearUser: () => set({ user: null }),
     }),
     {
-      name: 'user-storage', // unique name for localStorage key
-      getStorage: () => localStorage, // specify storage medium
+      name: 'user-storage',
+      getStorage: () => localStorage,
     }
   )
 );

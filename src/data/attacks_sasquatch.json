@@ -1,0 +1,396 @@
+{
+  "Sasquatch": {
+    "Type": "Squatch",
+    "Attacks": {
+        "Hearts": {
+          "Name": "Forest Recovery",
+          "Levels": [
+            {
+              "Level": 1,
+              "Effect": "Heals Sasquatch by 12 HP and creates a protective barrier of trees, reducing incoming damage for 2 turns.",
+              "Healing": 12,
+              "DamageReduction": 0.2,
+              "Duration": 2 
+            },
+            {
+              "Level": 2,
+              "Effect": "Heals Sasquatch by 24 HP and creates a protective barrier of trees, reducing incoming damage for 4 turns.",
+              "Healing": 15,
+              "DamageReduction": 0.25,
+              "Duration": 4
+            },
+            {
+              "Level": 3,
+              "Effect": "Heals Sasquatch by 36 HP and creates a protective barrier of trees, reducing incoming damage for 6 turns.",
+              "Healing": 18,
+              "DamageReduction": 0.3,
+              "Duration": 6
+            },
+            {
+              "Level": 4,
+              "Effect": "Heals Sasquatch by 48 HP and creates a protective barrier of trees, reducing incoming damage for 8 turns.",
+              "Healing": 20,
+              "DamageReduction": 0.35,
+              "Duration": 8
+            }
+          ]
+        },
+        "Spades": {
+          "Name": "Venomous Claw",
+          "Levels": [   
+            {
+              "Level": 1,
+              "Effect": "A quick swipe that poisons the enemy, dealing damage over time.",
+              "Damage": 10,
+              "PoisonPotency": 0.1,
+              "Duration": 2
+            },
+            {
+              "Level": 2,
+              "Effect": "A quick swipe that poisons the enemy, dealing damage over time.",
+              "Damage": 12,
+              "PoisonPotency": 0.15,
+              "Duration": 4
+            },
+            {
+              "Level": 3,
+              "Effect": "A quick swipe that poisons the enemy, dealing damage over time.",
+              "Damage": 14,
+              "PoisonPotency": 0.2,
+              "Duration": 6
+            },
+            {
+              "Level": 4,
+              "Effect": "A quick swipe that poisons the enemy, dealing damage over time.",
+              "Damage": 16,
+              "PoisonPotency": 0.25,
+              "Duration": 8
+            }
+          ]
+        },
+        "Diamonds": {
+          "Name": "Crushing Blow",
+          "Levels": [
+            {
+              "Level": 1,
+              "Effect": "A powerful strike that deals critical damage and lowers the enemy's defense.",
+              "DamageMultiplier": 2,
+              "DefenseReduction": 0.1
+            },
+            {
+              "Level": 2,
+              "Effect": "A mighty strike that deals increased critical damage and further lowers the enemy's defense.",
+              "DamageMultiplier": 2.2,
+              "DefenseReduction": 0.15
+            },
+            {
+              "Level": 3,
+              "Effect": "A devastating strike that deals severe critical damage and significantly lowers the enemy's defense.",
+              "DamageMultiplier": 2.4,
+              "DefenseReduction": 0.2
+            },
+            {
+              "Level": 4,
+              "Effect": "An overwhelming strike that deals massive critical damage and greatly lowers the enemy's defense.",
+              "DamageMultiplier": 2.6,
+              "DefenseReduction": 0.25
+            },
+            {
+              "Level": 5,
+              "Effect": "A cataclysmic strike that deals catastrophic critical damage and drastically lowers the enemy's defense.",
+              "DamageMultiplier": 2.8,
+              "DefenseReduction": 0.3
+            }
+          ]
+        },
+        "Clubs": {
+          "Name": "Ground Smash",
+          "Levels": [
+            {
+              "Level": 1,
+              "Effect": "A massive slam that stuns the enemy for 2 turns.",
+              "DamageMultiplier": 1.5,
+              "StunDuration": 2
+            },
+            {
+              "Level": 2,
+              "Effect": "A powerful slam that stuns the enemy for 2 turns and deals additional damage.",
+              "DamageMultiplier": 1.7,
+              "StunDuration": 2
+            },
+            {
+              "Level": 3,
+              "Effect": "A mighty slam that stuns the enemy for 3 turns and deals significant damage.",
+              "DamageMultiplier": 1.9,
+              "StunDuration": 3
+            },
+            {
+              "Level": 4,
+              "Effect": "A devastating slam that stuns the enemy for 3 turns and deals severe damage.",
+              "DamageMultiplier": 2.1,
+              "StunDuration": 3
+            },
+            {
+              "Level": 5,
+              "Effect": "An earth-shattering slam that stuns the enemy for 4 turns and deals massive damage.",
+              "DamageMultiplier": 2.3,
+              "StunDuration": 4
+            }
+          ]
+        },
+        "CardNumbers": {
+          "2to10": {
+            "Description": "Attack power and poison potency scale with card number.",
+            "Levels": [
+              {
+                "Level": 1,
+                "DamageMultiplier": 1,
+                "PoisonMultiplier": 1
+              },
+              {
+                "Level": 2,
+                "DamageMultiplier": 1.1,
+                "PoisonMultiplier": 1.1
+              },
+              {
+                "Level": 3,
+                "DamageMultiplier": 1.2,
+                "PoisonMultiplier": 1.2
+              },
+              {
+                "Level": 4,
+                "DamageMultiplier": 1.3,
+                "PoisonMultiplier": 1.3
+              },
+              {
+                "Level": 5,
+                "DamageMultiplier": 1.4,
+                "PoisonMultiplier": 1.4
+              }
+            ]
+          },
+          "Jack": {
+            "Name": "Rapid Claw Strike",
+            "Levels": [
+              {
+                "Level": 1,
+                "Effect": "A quick series of strikes that deals double damage and reduces enemy defense.",
+                "DamageMultiplier": 2,
+                "DefenseReduction": 0.1,
+                "Strikes": 3
+              },
+              {
+                "Level": 2,
+                "Effect": "A swift series of strikes that deals increased damage and further reduces enemy defense.",
+                "DamageMultiplier": 2.2,
+                "DefenseReduction": 0.15,
+                "Strikes": 3
+              },
+              {
+                "Level": 3,
+                "Effect": "A rapid series of strikes that deals significant damage and greatly reduces enemy defense.",
+                "DamageMultiplier": 2.4,
+                "DefenseReduction": 0.2,
+                "Strikes": 4
+              },
+              {
+                "Level": 4,
+                "Effect": "A lightning-fast series of strikes that deals severe damage and drastically reduces enemy defense.",
+                "DamageMultiplier": 2.6,
+                "DefenseReduction": 0.25,
+                "Strikes": 4
+              },
+              {
+                "Level": 5,
+                "Effect": "A blindingly fast series of strikes that deals massive damage and cripples enemy defense.",
+                "DamageMultiplier": 2.8,
+                "DefenseReduction": 0.3,
+                "Strikes": 5
+              }
+            ]
+          },
+          "Queen": {
+            "Name": "Roar of the Forest",
+            "Levels": [
+              {
+                "Level": 1,
+                "Effect": "An AoE attack that damages and poisons all enemies, lowering their attack power.",
+                "DamageMultiplier": 1.5,
+                "PoisonDamage": 3,
+                "PoisonDuration": 3,
+                "AttackReduction": 0.1,
+                "Targets": "All"
+              },
+              {
+                "Level": 2,
+                "Effect": "A stronger AoE attack that damages and poisons all enemies, further lowering their attack power.",
+                "DamageMultiplier": 1.7,
+                "PoisonDamage": 4,
+                "PoisonDuration": 3,
+                "AttackReduction": 0.15,
+                "Targets": "All"
+              },
+              {
+                "Level": 3,
+                "Effect": "A powerful AoE attack that significantly damages and poisons all enemies, greatly lowering their attack power.",
+                "DamageMultiplier": 1.9,
+                "PoisonDamage": 5,
+                "PoisonDuration": 4,
+                "AttackReduction": 0.2,
+                "Targets": "All"
+              },
+              {
+                "Level": 4,
+                "Effect": "A devastating AoE attack that severely damages and poisons all enemies, drastically lowering their attack power.",
+                "DamageMultiplier": 2.1,
+                "PoisonDamage": 6,
+                "PoisonDuration": 4,
+                "AttackReduction": 0.25,
+                "Targets": "All"
+              },
+              {
+                "Level": 5,
+                "Effect": "A cataclysmic AoE attack that massively damages and poisons all enemies, crippling their attack power.",
+                "DamageMultiplier": 2.3,
+                "PoisonDamage": 7,
+                "PoisonDuration": 5,
+                "AttackReduction": 0.3,
+                "Targets": "All"
+              }
+            ]
+          },
+          "King": {
+            "Name": "Lord of the Woods",
+            "Levels": [
+              {
+                "Level": 1,
+                "Effect": "Gains a permanent boost to all attacks, adding poison to every strike and boosting defense.",
+                "AttackBoost": 1.2,
+                "PoisonDamage": 2,
+                "DefenseBoost": 1.1
+              },
+              {
+                "Level": 2,
+                "Effect": "Gains an increased permanent boost to all attacks, adding stronger poison to every strike and further boosting defense.",
+                "AttackBoost": 1.3,
+                "PoisonDamage": 3,
+                "DefenseBoost": 1.2
+              },
+              {
+                "Level": 3,
+                "Effect": "Gains a significant permanent boost to all attacks, adding potent poison to every strike and greatly boosting defense.",
+                "AttackBoost": 1.4,
+                "PoisonDamage": 4,
+                "DefenseBoost": 1.3
+              },
+              {
+                "Level": 4,
+                "Effect": "Gains a major permanent boost to all attacks, adding severe poison to every strike and massively boosting defense.",
+                "AttackBoost": 1.5,
+                "PoisonDamage": 5,
+                "DefenseBoost": 1.4
+              },
+              {
+                "Level": 5,
+                "Effect": "Gains an overwhelming permanent boost to all attacks, adding deadly poison to every strike and providing unparalleled defense.",
+                "AttackBoost": 1.6,
+                "PoisonDamage": 6,
+                "DefenseBoost": 1.5
+              }
+            ]
+          },
+          "Ace": {
+            "Name": "Forest Cataclysm",
+            "Levels": [
+              {
+                "Level": 1,
+                "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads.",
+                "DamageMultiplier": 2.5,
+                "StunDuration": 2,
+                "PoisonDamage": 4,
+                "PoisonDuration": 3,
+                "Targets": "All"
+              },
+              {
+                "Level": 2,
+                "Effect": "Deals increased massive AoE damage, stunning all enemies for longer and applying stronger poison that spreads.",
+                "DamageMultiplier": 2.8,
+                "StunDuration": 2,
+                "PoisonDamage": 5,
+                "PoisonDuration": 3,
+                "Targets": "All"
+              },
+              {
+                "Level": 3,
+                "Effect": "Deals severe AoE damage, stunning all enemies for an extended duration and applying potent poison that spreads rapidly.",
+                "DamageMultiplier": 3.1,
+                "StunDuration": 3,
+                "PoisonDamage": 6,
+                "PoisonDuration": 4,
+                "Targets": "All"
+              },
+              {
+                "Level": 4,
+                "Effect": "Deals devastating AoE damage, stunning all enemies for a prolonged period and applying deadly poison that spreads uncontrollably.",
+                "DamageMultiplier": 3.4,
+                "StunDuration": 3,
+                "PoisonDamage": 7,
+                "PoisonDuration": 4,
+                "Targets": "All"
+              },
+              {
+                "Level": 5,
+                "Effect": "Deals catastrophic AoE damage, stunning all enemies for an extreme duration and applying lethal poison that spreads explosively.",
+                "DamageMultiplier": 3.7,
+                "StunDuration": 4,
+                "PoisonDamage": 8,
+                "PoisonDuration": 5,
+                "Targets": "All"
+              }
+            ]
+          },
+          "Joker": {
+            "Name": "Wild Forest Chaos",
+            "Levels": [
+              {
+                "Level": 1,
+                "Effect": "Sasquatch strikes enemies with random forest-based attacks, causing unpredictable damage and debuffs.",
+                "DamageMultiplier": 1.5,
+                "DebuffChance": 0.3,
+                "Targets": "Random"
+              },
+              {
+                "Level": 2,
+                "Effect": "Sasquatch strikes enemies with stronger random forest-based attacks, causing increased unpredictable damage and debuffs.",
+                "DamageMultiplier": 1.7,
+                "DebuffChance": 0.4,
+                "Targets": "Random"
+              },
+              {
+                "Level": 3,
+                "Effect": "Sasquatch strikes enemies with powerful random forest-based attacks, causing significant unpredictable damage and debuffs.",
+                "DamageMultiplier": 1.9,
+                "DebuffChance": 0.5,
+                "Targets": "Random"
+              },
+              {
+                "Level": 4,
+                "Effect": "Sasquatch strikes enemies with devastating random forest-based attacks, causing severe unpredictable damage and debuffs.",
+                "DamageMultiplier": 2.1,
+                "DebuffChance": 0.6,
+                "Targets": "Random"
+              },
+              {
+                "Level": 5,
+                "Effect": "Sasquatch strikes enemies with cataclysmic random forest-based attacks, causing overwhelming unpredictable damage and debuffs.",
+                "DamageMultiplier": 2.3,
+                "DebuffChance": 0.7,
+                "Targets": "Random"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

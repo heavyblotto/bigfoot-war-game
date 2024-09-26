@@ -25,7 +25,7 @@ const Lobby = ({ user, setUser }) => {
   const renderView = () => {
     switch (currentView) {
       case 'statistics':
-        return <Statistics />;
+        return <Statistics player={user.player} />;
       case 'shop':
         return <Shop />;
       case 'settings':
@@ -45,6 +45,10 @@ const Lobby = ({ user, setUser }) => {
               >
                 {messages.welcomeUser.replace('{username}', user.username)}
               </Text>
+            </HStack>
+            <HStack justifyContent="center" spacing={4}>
+              <Text color="white">Level: {user.player.level}</Text>
+              <Text color="white">XP: {user.player.xp}</Text>
             </HStack>
             <Grid templateColumns="repeat(2, 1fr)" gap={4}>
               <GridItem colSpan={2}>

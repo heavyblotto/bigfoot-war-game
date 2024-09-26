@@ -15,7 +15,11 @@ export async function POST(request) {
     const { username, password } = await request.json();
     console.log('Login attempt for username:', username);
 
-    const user = await prisma.user.findUnique({ where: { username } });
+    const user = await prisma.user.findUnique({
+      where: { username },
+      include: { player: true } // Include the associated Player data
+    });
+
     if (!user) {
       console.log('User not found:', username);
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
@@ -30,12 +34,15 @@ export async function POST(request) {
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     console.log('Login successful for user:', username);
 
+    // Make sure this token is being returned to the client and stored in the auth store
+    console.log('Token being sent after login:', token);
     return NextResponse.json({ 
       token, 
       user: { 
         id: user.id, 
         username: user.username, 
-        email: user.email 
+        email: user.email,
+        player: user.player
       } 
     });
   } catch (error) {
