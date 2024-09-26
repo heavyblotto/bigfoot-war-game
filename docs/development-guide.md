@@ -144,3 +144,29 @@ height={100}
 ```
 
 For external images, make sure to add the domain to the `domains` array in `next.config.mjs`.
+
+## Centralized Text Management
+
+To manage text strings centrally, we use a JSON-based approach combined with a custom hook. All text strings are stored in `src/data/strings/strings.json` and accessed via the `useStrings` hook.
+
+### Adding New Text Strings
+
+1. Open `src/data/strings/strings.json`.
+2. Add your new text strings under the appropriate category (e.g., titles, labels, messages, tooltips).
+
+### Using Text Strings in Components
+
+1. Import the `useStrings` hook:
+   ```javascript
+   import useStrings from '@/hooks/useStrings';
+   ```
+2. Access the text strings:
+   ```javascript
+   const { labels, messages, tooltips } = useStrings();
+   ```
+3. Use the text strings in your component:
+   ```javascript
+   <label>{labels.username}</label>
+   ```
+
+This approach ensures that all text strings are managed centrally, making it easy to update text without changing the code.
