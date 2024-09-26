@@ -1,15 +1,27 @@
 import React from 'react';
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, Heading, Text, VStack } from '@chakra-ui/react';
 import useStrings from '@/hooks/useStrings';
 
 const Shop = () => {
   const { titles, messages } = useStrings();
 
   return (
-    <Box>
-      <Heading as="h3" size="lg" mb={4}>{titles.shop}</Heading>
-      <Text>{messages.shopComingSoon}</Text>
-    </Box>
+    <VStack spacing={6} align="stretch">
+      <Heading as="h2" size="lg" textAlign="center" color="white" fontFamily="'Press Start 2P', cursive">
+        {titles.shop}
+      </Heading>
+      <Box
+        borderWidth={2}
+        borderRadius="lg"
+        p={6}
+        bgGradient="linear(to-b, gray.700, gray.600)"
+        boxShadow="md"
+      >
+        <Text color="white" fontFamily="'Roboto', sans-serif">
+          {messages.shopComingSoon}
+        </Text>
+      </Box>
+    </VStack>
   );
 };
 
