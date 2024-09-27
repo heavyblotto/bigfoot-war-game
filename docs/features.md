@@ -29,8 +29,20 @@ This document outlines the features of the Bigfoot War project, including both f
 
 4. **Bigfoot Character System**
    - Create a database of Bigfoot characters with unique attributes
-   - Implement character selection and unlocking mechanics
+   - Implement character selection mechanics
    - Design character progression and leveling system
+   - Status: In Progress
+   - Implementation Plan:
+     1. Update database schema
+     2. Create CharacterSelection component
+     3. Update character store
+     4. Implement new API endpoints
+     5. Update main menu
+     6. Create character selection page
+     7. Update pre-game screen
+     8. Implement basic character unlocking
+     9. Update game logic
+     10. Update player profile
 
 5. **Card Game Engine**
    - Develop the core War card game logic

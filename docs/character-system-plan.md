@@ -2,126 +2,62 @@
 
 ## Current State of the Codebase
 
-1. Authentication System:
-   - Fully implemented with user registration, login, and token-based authentication
-   - Uses Zustand for state management (useUserStore and useAuthStore)
-   - API routes for login, registration, email update, and account deletion are in place
-   - Reference: 
-     ```javascript:src/hooks/useAuth.js
-     startLine: 1
-     endLine: 35
-     ```
+1. Character Store:
+   - Implemented using Zustand
+   - Includes basic CRUD operations for characters
+   - Reference: src/store/characterStore.js
 
-2. Database:
+2. Character Hook:
+   - useCharacter hook implemented
+   - Includes functions for fetching, creating, and updating characters
+   - Reference: src/hooks/useCharacter.js
+
+3. Database:
    - Vercel PostgreSQL is set up and connected using Prisma ORM
    - User model is defined and functional
-   - Reference: 
-     ```prisma/schema.prisma
-     startLine: 1
-     endLine: 18
-     ```
+   - Character-related models (Bigfoot, BigfootPlayer, NPCOpponent) are implemented
 
-3. Frontend:
-   - Next.js 13+ with App Router is implemented
-   - Chakra UI is set up for consistent styling
-   - Basic layout and routing are in place
-   - Reference: 
-     ```javascript:src/app/layout.js
-     startLine: 1
-     endLine: 25
-     ```
+4. API Routes:
+   - Basic CRUD operations for characters are implemented
 
-4. State Management:
-   - Zustand is used for global state management
-   - Stores for user, auth, and game state are implemented
-   - Reference: 
-     ```javascript:src/store/gameStore.js
-     startLine: 1
-     endLine: 16
-     ```
+## Next Steps
 
-5. API Routes:
-   - Authentication-related API routes are implemented
-   - Reference: 
-     ```javascript:src/app/api/auth/login/route.js
-     startLine: 1
-     endLine: 45
-     ```
+1. Implement Character Selection UI:
+   - Create a new component for character selection
+   - Use the useCharacter hook to fetch and display available characters
+   - Implement selection functionality using setSelectedCharacter from characterStore
 
-This existing infrastructure provides a solid foundation for implementing the Bigfoot Character System. The plan below outlines the steps to build upon this foundation and integrate the new features seamlessly.
+2. Implement Character Details View:
+   - Create a new component to display detailed information about a selected character
+   - Use the selectedCharacter from characterStore to populate the view
 
-## Phase 1: Data Structure and Management
-1. Create a Bigfoot character model based on the `bigfoots.json` file, character-system.md, and character-system-plan.md.
-2. Implement a data layer to manage character information using Zustand
-3. Set up a system for updating and expanding the character database in Vercel PostgreSQL
-4. Create a player model to store XP, level, and unlocked characters in Vercel PostgreSQL
-5. Make sure to implement string management using the centralized approach with `useStrings` hook as you go along
+3. Integrate Character System with Game Logic:
+   - Update gameStore to use the selected character in game mechanics
+   - Implement logic for character stats affecting gameplay
 
-## Phase 2: Basic Character Functionality
-1. Implement character selection mechanism for both player characters and NPCs using App Router
-2. Create a basic character details view using Chakra UI components
-3. Develop a simple collection management system with Zustand state management
-4. Implement difficulty selection for NPC opponents
-5. Implement the initial Sasquatch character for players and the first NPC opponent
-6. Ensure all UI components use consistent styles, fonts, and layouts
+4. Implement Character Progression:
+   - Add functionality to update character stats based on game outcomes
+   - Implement leveling system for characters
 
-## Phase 3: Player and Character Progression System
-1. Implement experience points and leveling system for players using Zustand and Vercel PostgreSQL
-2. Create a mechanism for characters to level up based on player XP
-3. Develop stat calculation based on character level
-4. Implement ability unlocking based on character level
-5. Create a system for unlocking NPC opponents as the player progresses
-6. Ensure all text strings are managed using the `useStrings` hook
+5. Implement Unlocking Mechanics:
+   - Create a system for unlocking new characters based on player progress
+   - Update the character selection UI to show locked/unlocked status
 
-## Phase 4: Unlocking Mechanics
-1. Implement story-based character unlocks using App Router for navigation
-2. Create a challenge system for unlocking characters
-3. Develop a random drop system for battles
-4. Implement a system to track unlocked characters in the player's collection using Zustand and Vercel PostgreSQL
-5. Implement a system to unlock NPC opponents based on player level
+6. Enhance API Routes:
+   - Implement additional routes for character progression and unlocking
 
-## Phase 5: Character Customization
-1. Implement a system for special items that modify abilities
-2. Ensure all UI components for customization use Chakra UI and follow the project's style guidelines
+7. Update Database Schema:
+   - Add fields for character progression and unlocking status if not already present
 
-## Phase 6: Combat System Integration
-1. Integrate character stats into the combat system using Zustand for state management
-2. Implement special abilities in battles
-3. Develop type advantage/disadvantage system
-4. Implement the luck stat and its influence on battles and special abilities
-5. Ensure all combat-related text uses the `useStrings` hook for centralized management
+8. Testing and Refinement:
+   - Thoroughly test all new components and functionality
+   - Refine UI/UX based on testing feedback
 
-## Phase 7: User Interface Development
-1. Design and implement the character selection screen using Chakra UI and App Router
-2. Create a detailed character view interface
-3. Develop the collection management UI
-4. Create the character upgrade/progression UI
-5. Implement UI for selecting NPC opponents and difficulty levels
-6. Design and implement the player profile interface
-7. Ensure all UI components use consistent styles, fonts, and layouts as per the project conventions
+9. Documentation:
+   - Update technical documentation to reflect new character system implementation
+   - Create user documentation for character selection and progression
 
-## Phase 8: Data Persistence and Synchronization
-1. Implement local storage for offline character data using Zustand persist middleware
-2. Develop server-side storage and synchronization with Vercel PostgreSQL
-3. Create a system for regular updates and balancing
-4. Ensure proper integration with the existing user account and authentication system
-
-## Phase 9: Testing and Refinement
-1. Conduct thorough testing of all character system components
-2. Balance character stats and abilities
-3. Refine user interface based on feedback
-4. Optimize performance for character management and battles
-5. Test and refine the NPC opponent selection and difficulty system
-6. Ensure proper integration of player XP and character leveling
-7. Verify that all components work correctly with the App Router and Zustand state management
-
-## Phase 10: Documentation and Deployment
-1. Create user documentation for the character system
-2. Develop technical documentation for future maintenance
-3. Deploy the character system as part of the game update on Vercel
-4. Ensure all environment variables are properly set in Vercel for database access and other configurations
-
-This updated plan ensures that we're implementing everything correctly, using string management, consistent styles and layouts, App Router, Zustand for state management, Vercel PostgreSQL, and integrating with the existing user account and authentication system.
+This updated plan takes into account the existing implementation and focuses on building upon it to complete the character system. It aligns with the current state of the project and provides a clear path forward.
 
 For reference to the existing authentication system, please refer to:
 
