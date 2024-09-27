@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { VStack, HStack, Heading, Box, Text, Button, keyframes, usePrefersReducedMotion, Grid, GridItem } from '@chakra-ui/react';
+import { VStack, HStack, Heading, Box, Text, Button, keyframes, usePrefersReducedMotion, SimpleGrid } from '@chakra-ui/react';
 import Statistics from './Statistics';
 import Shop from './Shop';
 import Settings from './Settings';
 import Profile from './Profile';
-import { FaChessKing, FaPlay, FaShoppingCart, FaCog, FaUser, FaArrowLeft, FaChartBar } from 'react-icons/fa';
+import { FaChessKing, FaPlay, FaShoppingCart, FaCog, FaUser, FaArrowLeft, FaChartBar, FaUserAstronaut } from 'react-icons/fa';
 import useStrings from '@/hooks/useStrings';
+import { useRouter } from 'next/navigation';
 
 const pulseAnimation = keyframes`
   0% { transform: scale(1); }
@@ -17,6 +18,7 @@ const Lobby = ({ user, setUser }) => {
   const [currentView, setCurrentView] = useState('main');
   const prefersReducedMotion = usePrefersReducedMotion();
   const { titles, labels, messages } = useStrings();
+  const router = useRouter();
 
   const animation = prefersReducedMotion
     ? undefined
@@ -36,7 +38,7 @@ const Lobby = ({ user, setUser }) => {
         return (
           <VStack spacing={6} align="stretch">
             <HStack justifyContent="center" alignItems="center">
-              <FaChessKing size={24} color="white" />
+              <FaChessKing size={24} color="gold" /> {/* Changed to gold color */}
               <Text
                 fontSize="xl"
                 fontWeight="bold"
@@ -50,97 +52,96 @@ const Lobby = ({ user, setUser }) => {
               <Text color="white">Level: {user.player.level}</Text>
               <Text color="white">XP: {user.player.xp}</Text>
             </HStack>
-            <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-              <GridItem colSpan={2}>
-                <Button
-                  size="lg"
-                  width="full"
-                  height="80px"
-                  fontSize="2xl"
-                  colorScheme="green"
-                  bgGradient="linear(to-r, green.400, green.600)"
-                  _hover={{
-                    bgGradient: "linear(to-r, green.500, green.700)",
-                    transform: "scale(1.05)",
-                  }}
-                  boxShadow="0px 4px 10px rgba(0, 255, 0, 0.3)"
-                  transition="all 0.3s ease-in-out"
-                  onClick={() => alert(messages.startGameComingSoon)}
-                  animation={animation}
-                  leftIcon={<FaPlay />}
-                >
-                  {labels.play}
-                </Button>
-              </GridItem>
-              <GridItem>
-                <Button
-                  size="lg"
-                  width="full"
-                  height="60px"
-                  colorScheme="yellow"
-                  bgGradient="linear(to-r, yellow.400, yellow.600)"
-                  _hover={{
-                    bgGradient: "linear(to-r, yellow.500, yellow.700)",
-                  }}
-                  onClick={() => setCurrentView('shop')}
-                  color="white"
-                  leftIcon={<FaShoppingCart />}
-                >
-                  {labels.shop}
-                </Button>
-              </GridItem>
-              <GridItem>
-                <Button
-                  size="lg"
-                  width="full"
-                  height="60px"
-                  colorScheme="cyan"
-                  bgGradient="linear(to-r, cyan.400, cyan.600)"
-                  _hover={{
-                    bgGradient: "linear(to-r, cyan.500, cyan.700)",
-                  }}
-                  onClick={() => setCurrentView('settings')}
-                  color="white"
-                  leftIcon={<FaCog />}
-                >
-                  {labels.settings}
-                </Button>
-              </GridItem>
-              <GridItem>
-                <Button
-                  size="lg"
-                  width="full"
-                  height="60px"
-                  colorScheme="orange"
-                  bgGradient="linear(to-r, orange.400, orange.600)"
-                  _hover={{
-                    bgGradient: "linear(to-r, orange.500, orange.700)",
-                  }}
-                  onClick={() => setCurrentView('profile')}
-                  color="white"
-                  leftIcon={<FaUser />}
-                >
-                  {labels.profile}
-                </Button>
-              </GridItem>
-              <GridItem>
-                <Button
-                  size="lg"
-                  width="full"
-                  height="60px"
-                  colorScheme="purple"
-                  bgGradient="linear(to-r, purple.400, purple.600)"
-                  _hover={{
-                    bgGradient: "linear(to-r, purple.500, purple.700)",
-                  }}
-                  onClick={() => setCurrentView('statistics')}
-                  color="white"
-                  leftIcon={<FaChartBar />}
-                >
-                  {labels.statistics}
-                </Button>
-              </GridItem>
-            </Grid>
+            <SimpleGrid columns={{ base: 1 }} spacing={4}>
+              <Button
+                size="lg"
+                width="full"
+                height="80px"
+                fontSize="2xl"
+                colorScheme="teal"
+                bgGradient="linear(to-r, teal.400, teal.600)"
+                _hover={{
+                  bgGradient: "linear(to-r, teal.500, teal.700)",
+                  transform: "scale(1.05)",
+                }}
+                boxShadow="0px 4px 10px rgba(0, 255, 0, 0.3)"
+                transition="all 0.3s ease-in-out"
+                onClick={() => alert(messages.startGameComingSoon)}
+                animation={animation}
+                leftIcon={<FaPlay color="#333" />}
+              >
+                {labels.play}
+              </Button>
+              <Button
+                size="lg"
+                width="full"
+                height="60px"
+                colorScheme="blue"
+                bgGradient="linear(to-r, blue.400, blue.600)"
+                _hover={{
+                  bgGradient: "linear(to-r, blue.500, blue.700)",
+                }}
+                onClick={() => router.push('/character-selection')}
+                color="white"
+                leftIcon={<FaUserAstronaut color="#333" />}
+              >
+                My Bigfoots
+              </Button>
+              <Button
+                size="lg"
+                width="full"
+                colorScheme="yellow"
+                bgGradient="linear(to-r, yellow.400, yellow.600)"
+                _hover={{
+                  bgGradient: "linear(to-r, yellow.500, yellow.700)",
+                }}
+                onClick={() => setCurrentView('statistics')}
+                leftIcon={<FaChartBar color="#333" />}
+                color="white"
+              >
+                {labels.statistics}
+              </Button>
+              <Button
+                size="lg"
+                width="full"
+                colorScheme="orange"
+                bgGradient="linear(to-r, orange.400, orange.600)"
+                _hover={{
+                  bgGradient: "linear(to-r, orange.500, orange.700)",
+                }}
+                onClick={() => setCurrentView('shop')}
+                leftIcon={<FaShoppingCart color="#333" />}
+              >
+                {labels.shop}
+              </Button>
+              <Button
+                size="lg"
+                width="full"
+                colorScheme="gray"
+                bgGradient="linear(to-r, gray.500, gray.700)"
+                _hover={{
+                  bgGradient: "linear(to-r, gray.600, gray.800)",
+                }}
+                onClick={() => setCurrentView('settings')}
+                leftIcon={<FaCog color="#333" />}
+                color="white"
+              >
+                {labels.settings}
+              </Button>
+              <Button
+                size="lg"
+                width="full"
+                colorScheme="purple"
+                bgGradient="linear(to-r, purple.400, purple.600)"
+                _hover={{
+                  bgGradient: "linear(to-r, purple.500, purple.700)",
+                }}
+                onClick={() => setCurrentView('profile')}
+                leftIcon={<FaUser color="#333" />}
+              >
+                {labels.profile}
+              </Button>
+            </SimpleGrid>
           </VStack>
         );
     }

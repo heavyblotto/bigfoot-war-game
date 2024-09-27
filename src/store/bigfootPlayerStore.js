@@ -9,6 +9,7 @@ export const useBigfootPlayerStore = create((set, get) => ({
       const response = await fetch('/api/bigfoot-players');
       if (!response.ok) throw new Error('Failed to fetch bigfoots');
       const data = await response.json();
+      console.log('API response data:', data);
       set({ bigfoots: data });
     } catch (error) {
       console.error('Error fetching bigfoots:', error);

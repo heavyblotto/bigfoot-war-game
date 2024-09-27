@@ -1,15 +1,89 @@
 import { NextResponse } from 'next/server';
+import { v4 as uuidv4 } from 'uuid';
 import prisma from '@/lib/prisma';
+import { processBigfootData } from '@/utils/bigfoots';
 
 export async function GET() {
   try {
-    const bigfootPlayers = await prisma.bigfootPlayer.findMany({
-      include: { bigfoot: true }
+    const currentBigfoots = processBigfootData();
+    const currentBigfootNames = currentBigfoots.map(b => b.name);
+
+    // Delete BigfootPlayers that are no longer in the JSON
+    await prisma.bigfootPlayer.deleteMany({
+      where: {
+        bigfoot: {
+          name: {
+            notIn: currentBigfootNames
+          }
+        }
+      }
     });
-    return NextResponse.json(bigfootPlayers);
+
+    // Fetch existing BigfootPlayers
+    let bigfootPlayers = await prisma.bigfootPlayer.findMany({
+      include: { bigfoot: true, player: { include: { user: true } } }
+    });
+
+    // Create new BigfootPlayers for any new entries in the JSON
+    for (const bigfoot of currentBigfoots) {
+      const existingPlayer = bigfootPlayers.find(bp => bp.bigfoot.name === bigfoot.name);
+      if (!existingPlayer) {
+        const newBigfootPlayer = await prisma.bigfootPlayer.create({
+          data: {
+            bigfoot: {
+              connectOrCreate: {
+                where: { name: bigfoot.name },
+                create: {
+                  name: bigfoot.name,
+                  type: bigfoot.type,
+                  location: bigfoot.location,
+                  habitat: bigfoot.habitat,
+                  description: bigfoot.description,
+                  attacksFile: 'default_attacks.json'
+                }
+              }
+            },
+            level: 1,
+            xp: 0,
+            hp: 100,
+            defense: 10,
+            luck: 5,
+            imageUrl: bigfoot.image,
+            isSelected: false,
+            player: {
+              create: {
+                user: {
+                  create: {
+                    username: `User_${Math.random().toString(36).substr(2, 9)}`,
+                  }
+                }
+              }
+            }
+          },
+          include: { bigfoot: true, player: { include: { user: true } } }
+        });
+        bigfootPlayers.push(newBigfootPlayer);
+      }
+    }
+
+    const processedBigfoots = bigfootPlayers.map(player => ({
+      id: player.id,
+      name: player.bigfoot.name,
+      type: player.bigfoot.type,
+      location: player.bigfoot.location,
+      habitat: player.bigfoot.habitat,
+      description: player.bigfoot.description,
+      image: player.imageUrl,
+      level: player.level,
+      xp: player.xp,
+      isSelected: player.isSelected
+    }));
+
+    console.log('Processed bigfoots:', processedBigfoots);
+    return NextResponse.json(processedBigfoots);
   } catch (error) {
-    console.error('Error fetching BigfootPlayers:', error);
-    return NextResponse.json({ error: 'Error fetching BigfootPlayers' }, { status: 500 });
+    console.error('Error fetching bigfoot players:', error);
+    return NextResponse.json({ error: 'Failed to fetch bigfoot players' }, { status: 500 });
   }
 }
 

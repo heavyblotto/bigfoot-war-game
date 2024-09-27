@@ -24,8 +24,10 @@
    - `src/hooks/useBigfootPlayer.js` has been created to provide easy access to bigfoot player functionality.
 
 6. Next steps:
-   - Integrate the BigfootSelection component into the main game flow.
-   - Update the player profile to reflect the selected bigfoot.
-   - Implement bigfoot unlocking mechanics.
+   - Integrate the `/character-selection` route into the main game flow
+   - Add navigation to the character selection page from the Main Menu
+   - Implement a pre-game screen with an option to return to character selection
+   - Update the player profile to reflect the selected bigfoot
+   - Implement bigfoot unlocking mechanics
 
 This plan focuses on integrating the Bigfoot character selection feature into our existing app structure, ensuring consistency with our UI/UX decisions and project conventions. It leverages Zustand for state management, Chakra UI for styling, Framer Motion for animations, and our custom strings hook system for text management. By adding strings as we develop each component, we ensure that all necessary text is captured and properly aligned with the implementation. This approach provides a solid foundation that we can build upon later when we're ready to implement more advanced features like character unlocking and tutorials.
