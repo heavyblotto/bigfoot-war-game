@@ -5,6 +5,7 @@ export async function GET(req, { params }) {
   try {
     const bigfootPlayer = await prisma.bigfootPlayer.findUnique({
       where: { id: params.id },
+      include: { bigfoot: true }
     });
     if (!bigfootPlayer) {
       return NextResponse.json({ error: 'BigfootPlayer not found' }, { status: 404 });
@@ -19,9 +20,19 @@ export async function GET(req, { params }) {
 export async function PUT(req, { params }) {
   try {
     const data = await req.json();
+    
+    if (data.isSelected) {
+      // If this bigfoot is being selected, unselect all others first
+      await prisma.bigfootPlayer.updateMany({
+        where: { NOT: { id: params.id } },
+        data: { isSelected: false }
+      });
+    }
+
     const updatedBigfootPlayer = await prisma.bigfootPlayer.update({
       where: { id: params.id },
       data,
+      include: { bigfoot: true }
     });
     return NextResponse.json(updatedBigfootPlayer);
   } catch (error) {

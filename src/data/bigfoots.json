@@ -2824,57 +2824,6 @@
                 }
             }
         },
-        "Wa'ab": {
-            "Type": "Squatch",
-            "Location": "Sudan",
-            "Habitat": [
-                "Lush, hidden desert oases surrounded by sand dunes in Sudan.",
-                "Dry, rocky outcroppings near freshwater springs deep in the desert.",
-                "Isolated, sandy basins where small groves of palm trees grow around watering holes."
-            ],
-            "Description": "The Wa'ab is a desert-dwelling cryptid found near isolated oases in Sudan. It is described as a tall, lanky creature that survives in the harsh desert climate. Rarely seen by travelers, the Wa'ab is believed to be a guardian of these remote water sources.",
-            "Attacks": {
-                "Hearts": {
-                    "Name": "Desert Oasis",
-                    "Effect": "Heals Wa'ab by 9 HP and creates a shield of sand and wind, reducing incoming damage for 2 turns."
-                },
-                "Spades": {
-                    "Name": "Venomous Strike",
-                    "Effect": "A poisonous strike that infects the enemy, dealing damage over time."
-                },
-                "Diamonds": {
-                    "Name": "Sandstorm Slash",
-                    "Effect": "A powerful strike that deals critical damage and lowers the enemy's defense."
-                },
-                "Clubs": {
-                    "Name": "Desert Slam",
-                    "Effect": "A powerful hit that stuns the enemy for 1 turn."
-                },
-                "CardNumbers": {
-                    "2-10": "Attack power and poison potency scale with card number.",
-                    "Jack": {
-                        "Name": "Sandstorm Ambush",
-                        "Effect": "A rapid strike carried by the wind, dealing double damage and reducing the enemy's speed."
-                    },
-                    "Queen": {
-                        "Name": "Desert's Fury",
-                        "Effect": "An AoE attack that damages all enemies, reducing their attack power and poisoning them."
-                    },
-                    "King": {
-                        "Name": "Lord of the Dunes",
-                        "Effect": "Gains a permanent boost to all attacks, adding poison to every strike and increasing defense."
-                    },
-                    "Ace": {
-                        "Name": "Desert Cataclysm",
-                        "Effect": "Deals massive AoE damage, stunning all enemies and applying poison that spreads to others."
-                    },
-                    "Joker": {
-                        "Name": "Desert Chaos",
-                        "Effect": "Wa'ab strikes with random desert-based attacks, dealing unpredictable damage and effects."
-                    }
-                }
-            }
-        },
         "Yeti": {
             "Type": "Squatch",
             "Location": "Himalayas",

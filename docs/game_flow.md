@@ -16,10 +16,15 @@ This document outlines the flow and user experience for the Bigfoot War game, ba
    - Settings
 
 3. Character Selection
-   - Grid or carousel of available Bigfoot characters
-   - Character details panel (stats, special abilities)
-   - "Select" button to choose a character
-   - Option to return to this screen from the main menu or pre-game screen
+   - Route: `/character-selection`
+   - Component: BigfootSelection
+   - Functionality:
+     - Displays a grid of available Bigfoot characters
+     - Shows character details (stats, special abilities)
+     - Allows player to select a character
+   - Navigation:
+     - Accessible from the Main Menu
+     - Can return to this screen from the pre-game screen
 
 4. Opponent Matching
    - Display available opponents based on player's level

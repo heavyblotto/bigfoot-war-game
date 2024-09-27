@@ -10,7 +10,8 @@
     "register": "Register",
     "profile": "Profile",
     "statistics": "Statistics",
-    "mainTitle": "Bigfoot War!"
+    "mainTitle": "Bigfoot War!",
+    "selectYourBigfoot": "Select Your Bigfoot"
   },
   "labels": {
     "username": "Username",
@@ -41,7 +42,11 @@
     "joined": "Joined",
     "xpProgress": "XP Progress",
     "achievements": "Achievements",
-    "inventory": "Inventory"
+    "inventory": "Inventory",
+    "selectCharacter": "Select Character",
+    "selectBigfoot": "Select Bigfoot",
+    "selected": "Selected",
+    "selectBigfoot": "Select Bigfoot"
   },
   "messages": {
     "welcome": "Welcome to Bigfoot War!",
@@ -59,7 +64,8 @@
     "registrationError": "An error occurred during registration",
     "settingsComingSoon": "Settings options coming soon!",
     "shopComingSoon": "Shop features coming soon!",
-    "gameDescription": "Command powerful Bigfoots in a card-based duel of strategy and strength. Choose your Bigfoot, unleash devastating attacks, and outsmart your opponent."
+    "gameDescription": "Command powerful Bigfoots in a card-based duel of strategy and strength. Choose your Bigfoot, unleash devastating attacks, and outsmart your opponent.",
+    "chooseBigfootWarrior": "Choose your Bigfoot warrior to battle in the arena!"
   },
   "tooltips": {
     "username": "Enter your username",

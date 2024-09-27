@@ -7,7 +7,6 @@ import Register from '../components/Register';
 import Login from '../components/Login';
 import Lobby from '../components/Lobby';
 import useStrings from '@/hooks/useStrings';
-import bigfootWarImage from '@/assets/images/Bigfoot-War.webp';
 import { motion } from 'framer-motion';
 import { useUserStore } from '@/store/userStore';
 
@@ -149,7 +148,7 @@ const Home = () => {
           >
             <Box position="relative" width="100%" maxWidth="600px" height="300px" mx="auto">
               <Image
-                src={bigfootWarImage}
+                src="/assets/images/Bigfoot-War.webp"
                 alt="Bigfoot War"
                 fill
                 style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
