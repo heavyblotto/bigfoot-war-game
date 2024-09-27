@@ -1,15 +1,48 @@
 # Bigfoot Character System Design
 
 ## Overview
-The Bigfoot Character System is a core component of our game, allowing players to unlock, manage, and battle with various Bigfoot characters. This system leverages the extensive data provided in the `bigfoots.json` file to create a rich and diverse gameplay experience.
+The Bigfoot Character System is a core component of our game, allowing players to select, manage, and battle with various Bigfoot characters. This system leverages the extensive data provided in the `bigfoots.json` file to create a rich and diverse gameplay experience.
 
-## Player Attributes
-Players (associated with the user account) earn experience points and unlock characters. XP is earned by winning battles and completing other activities. XP is used to level up characters and is expressed in integer values. The overall player Level is calculated based on XP (e.g., 100 XP = Level 1, 200 XP = Level 2, etc.)
+## Implementation Plan
 
-## Bigfoot Player Characters and Non-Player Characters (NPCs)
-Players can select a Bigfoot character from their collection for battles. They can also select NPC Bigfoot characters (opponents) to battle against. Opponents are unlocked as the player progresses through the game. Players can select the difficulty of opponents based on their current level.
+1. Database Schema Update:
+   - Add a `selectedCharacterId` field to the `User` model in Prisma.
 
-Player's Bigfoot Characters level up as the player earns XP, unlocking more abilities and improving stats at higher levels.
+2. CharacterSelection Component:
+   - Create a new component for displaying and selecting characters.
+   - Implement a grid or carousel view of available characters.
+   - Display character information (image, name, type, basic stats).
+   - Implement selection functionality.
+
+3. Character Store Update:
+   - Update `src/store/characterStore.js` to include:
+     - State for available characters and selected character.
+     - Actions for fetching characters and updating selection.
+
+4. New API Endpoints:
+   - GET `/api/characters`: Fetch all available characters.
+   - PUT `/api/users/[id]/selected-character`: Update user's selected character.
+
+5. Main Menu Update:
+   - Add a "Characters" or "My Bigfoot" button linking to the character selection screen.
+
+6. Character Selection Page:
+   - Create a new page at `/characters` or `/my-bigfoot`.
+   - Utilize the `CharacterSelection` component.
+
+7. Pre-game Screen Update:
+   - Display the currently selected character.
+   - Add an option to change the character before starting the game.
+
+8. Basic Character Unlocking:
+   - Initially, make all characters available.
+   - Implement proper unlocking mechanics in future iterations.
+
+9. Game Logic Update:
+   - Ensure the game uses the selected character's stats and abilities.
+
+10. Player Profile Update:
+    - Display the player's current character selection.
 
 ## Character Attributes
 Each Bigfoot character has the following attributes:
@@ -21,6 +54,7 @@ Each Bigfoot character has the following attributes:
 5. Description
 6. Attacks (Hearts, Spades, Diamonds, Clubs)
 7. Special Attacks (Jack, Queen, King, Ace, and Joker cards)
+8. Image URL (for visual representation in the game)
 
 ## Character Stats
 In addition to the attributes from `bigfoots.json`, each character has:
@@ -28,6 +62,13 @@ In addition to the attributes from `bigfoots.json`, each character has:
 1. Health Points (HP)
 2. Defense Points (DP)
 3. Luck
+
+## Character Visuals
+Each character has an associated image:
+- Player characters use an image facing right
+- NPC opponents use the same image flipped horizontally (facing left)
+- Images are stored in the `src/assets/images/characters` directory
+- The image path is stored in the `imageUrl` field of the `BigfootPlayer` and `NPCOpponent` models
 
 ## Character Progression
 Characters level up through experience points gained from battles and other activities.
@@ -54,19 +95,21 @@ Character data is stored using:
 3. Regular updates for adding new characters or balancing existing ones
 
 ## Database Schema
-The character system is represented in the database with the following models:
+Update the User model in the database schema:
 
 ```prisma
 model User {
-  id            String   @id @default(uuid())
-  username      String   @unique
-  email         String?  @unique
-  password      String
-  xp            Int      @default(0)
-  level         Int      @default(1)
-  characters    Character[]
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id                  String   @id @default(uuid())
+  username            String   @unique
+  email               String?  @unique
+  password            String
+  xp                  Int      @default(0)
+  level               Int      @default(1)
+  characters          Character[]
+  selectedCharacterId String?
+  selectedCharacter   Character? @relation("SelectedCharacter", fields: [selectedCharacterId], references: [id])
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
 }
 
 model Character {
@@ -84,9 +127,11 @@ model Character {
   level         Int      @default(1)
   user          User     @relation(fields: [userId], references: [id])
   userId        String
+  selectedByUser User?   @relation("SelectedCharacter")
+  imageUrl      String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
 ```
 
-This design provides a comprehensive foundation for the Bigfoot Character System, ensuring an engaging gameplay experience centered around unique Bigfoot characters.
+This design provides a comprehensive foundation for implementing the Bigfoot Character Selection system, ensuring an engaging gameplay experience centered around unique Bigfoot characters.

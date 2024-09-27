@@ -19,13 +19,15 @@ model User {
 }
 
 model Player {
-  id               String           @id @default(uuid())
-  user             User             @relation(fields: [userId], references: [id])
-  userId           String           @unique
-  xp               Int              @default(0)
-  level            Int              @default(1)
-  unlockedBigfoots BigfootPlayer[]
-  gameSessions     GameSession[]
+  id                   String           @id @default(uuid())
+  user                 User             @relation(fields: [userId], references: [id])
+  userId               String           @unique
+  xp                   Int              @default(0)
+  level                Int              @default(1)
+  unlockedBigfoots     BigfootPlayer[]
+  gameSessions         GameSession[]
+  selectedBigfootId    String?          @unique  // Add @unique here
+  selectedBigfoot      BigfootPlayer?   @relation("SelectedBigfoot", fields: [selectedBigfootId], references: [id])
 }
 
 model Bigfoot {
@@ -41,17 +43,19 @@ model Bigfoot {
 }
 
 model BigfootPlayer {
-  id           String        @id @default(uuid())
-  player       Player        @relation(fields: [playerId], references: [id])
-  playerId     String
-  bigfoot      Bigfoot       @relation(fields: [bigfootId], references: [id])
-  bigfootId    String
-  level        Int           @default(1)
-  xp           Int           @default(0)
-  hp           Int
-  defense      Int
-  luck         Int
-  gameSessions GameSession[]
+  id                   String        @id @default(uuid())
+  player               Player        @relation(fields: [playerId], references: [id])
+  playerId             String
+  bigfoot              Bigfoot       @relation(fields: [bigfootId], references: [id])
+  bigfootId            String
+  level                Int           @default(1)
+  xp                   Int           @default(0)
+  hp                   Int
+  defense              Int
+  luck                 Int
+  imageUrl             String?
+  gameSessions         GameSession[]
+  selectedByPlayer     Player?       @relation("SelectedBigfoot")  // Add this line
 
   @@unique([playerId, bigfootId])
 }
@@ -67,6 +71,7 @@ model NPCOpponent {
   luck         Int
   isUnlocked   Boolean       @default(false)
   unlockedAt   DateTime?
+  imageUrl     String?       // Add this line
   gameSessions GameSession[]
 }
 

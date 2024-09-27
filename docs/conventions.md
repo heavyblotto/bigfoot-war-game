@@ -210,3 +210,12 @@ By following these conventions, we ensure consistent and optimized image impleme
 8. Keep store implementations in the `src/store/` directory
 9. Use custom hooks in `src/hooks/` to encapsulate common state-related logic
 10. When updating state, always use the store's actions rather than modifying state directly
+
+## Character Image Conventions
+1. Character images should be stored in the `src/assets/images/characters` directory
+2. Image file names should follow the format: `character_name.png` (e.g., `sasquatch.png`)
+3. Images should be in PNG format with transparent backgrounds
+4. Recommended image dimensions: 256x256 pixels
+5. Player character images should face right
+6. NPC opponent images will be automatically flipped to face left in the game
+7. When referencing images in the database, use relative paths from the project root (e.g., `/assets/images/characters/sasquatch.png`)
