@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Box, SimpleGrid, Image, Text, VStack, Button } from '@chakra-ui/react';
-import { useCharacterStore } from '@/store/characterStore';
+import { useBigfootPlayer } from '@/hooks/useBigfootPlayer';
 import { useAuth } from '@/hooks/useAuth';
 
-export function CharacterSelection() {
+export function BigfootSelection() {
   const { user } = useAuth();
-  const { bigfoots, selectedBigfoot, fetchBigfoots, selectBigfoot } = useCharacterStore();
+  const { bigfoots, selectedBigfoot, fetchBigfootPlayers, selectBigfootPlayer } = useBigfootPlayer();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadBigfoots = async () => {
-      await fetchBigfoots();
+      await fetchBigfootPlayers();
       setLoading(false);
     };
     loadBigfoots();
-  }, [fetchBigfoots]);
+  }, [fetchBigfootPlayers]);
 
   const handleSelectBigfoot = async (bigfoot) => {
     if (user?.player?.id) {
-      await selectBigfoot(user.player.id, bigfoot.id);
+      await selectBigfootPlayer(bigfoot.id);
     }
   };
 
   if (loading) {
-    return <Box>Loading characters...</Box>;
+    return <Box>Loading Bigfoots...</Box>;
   }
 
   return (

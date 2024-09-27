@@ -1,57 +1,31 @@
-# Bigfoot Character Selection Implementation Plan
+# Bigfoot Player Selection Implementation Plan
 
-1. Update the database schema:
-   - Modify the `BigfootPlayer` model in Prisma to include an `isSelected` field.
+1. Database schema update:
+   - The `BigfootPlayer` model in Prisma now includes an `isSelected` field.
 
-2. Update `src/store/bigfootPlayerStore.js` using Zustand:
-   - Implement actions for fetching bigfoot players and updating selection.
-   - Include state for available bigfoot players and selected bigfoot.
-   - Use Zustand's `create` function to create the store.
+2. Store implementation:
+   - `src/store/bigfootPlayerStore.js` has been created using Zustand.
+   - It includes actions for fetching bigfoot players and updating selection.
+   - The store maintains state for available bigfoot players and the selected bigfoot.
 
-3. Update the `bigfoot-players` API route in `src/app/api/bigfoot-players/route.js`:
-   - Modify GET to include the `isSelected` status.
-   - Implement PUT to handle updating the `isSelected` status.
+3. API routes update:
+   - `src/app/api/bigfoot-players/route.js`:
+     - GET method now includes the `isSelected` status.
+     - PUT method implemented to handle updating the `isSelected` status.
+   - `src/app/api/bigfoot-players/[id]/route.js`:
+     - GET method fetches a single bigfoot player with associated bigfoot data.
+     - PUT method updates a bigfoot player, handling the `isSelected` status.
+     - DELETE method allows for bigfoot player deletion.
 
-4. Create a `BigfootSelection` component in `src/components/BigfootSelection.js`:
-   - Use Chakra UI components for layout and styling.
-   - Implement a grid view of available bigfoot players using `Grid` and `GridItem`.
-   - Display bigfoot player information (image, name, type, basic stats) using `Box`, `Image`, and `Text`.
-   - Implement selection functionality with `Button`.
-   - Use Framer Motion for subtle animations on hover and selection.
-   - Add necessary strings to `src/data/strings/strings.json` as the component is built.
-   - Utilize the `useStrings` hook for all displayed text.
-   - Use the Zustand store (`useBigfootPlayerStore`) for state management.
+4. Component update:
+   - `src/components/BigfootSelection.js` has been created to handle bigfoot selection UI.
 
-5. Update the Lobby component in `src/components/Lobby.js`:
-   - Add a "My Bigfoots" button to the existing lobby options.
-   - Use Chakra UI's `Button` component with appropriate styling.
-   - Implement navigation to the bigfoot selection screen.
-   - Add necessary strings to `src/data/strings/strings.json`.
-   - Use the `useStrings` hook for button text.
+5. Hook update:
+   - `src/hooks/useBigfootPlayer.js` has been created to provide easy access to bigfoot player functionality.
 
-6. Create a new page for bigfoot selection in `src/app/my-bigfoots/page.js`:
-   - Use the `BigfootSelection` component here.
-   - Implement proper metadata and layout according to App Router conventions.
-   - Add necessary strings to `src/data/strings/strings.json`.
-   - Use the `useStrings` hook for page title and any additional text.
-
-7. Update the pre-game screen (assuming it's in `src/app/game/page.js`):
-   - Display the currently selected bigfoot player using the Zustand store.
-   - Add an option to change the bigfoot player before starting the game.
-   - Add necessary strings to `src/data/strings/strings.json`.
-   - Use the `useStrings` hook for all displayed text.
-
-8. Update the game logic in `src/app/game/[id]/page.js`:
-   - Ensure the game uses the selected bigfoot player's stats and abilities from the Zustand store.
-   - Add any necessary game-related strings to `src/data/strings/strings.json`.
-
-9. Update the player profile in `src/app/profile/page.js`:
-   - Display the player's current bigfoot player selection using the Zustand store.
-   - Add necessary strings to `src/data/strings/strings.json`.
-   - Use the `useStrings` hook for all displayed text.
-
-10. Implement basic bigfoot unlocking logic:
-    - For now, make all bigfoot players available in the Zustand store.
-    - We can implement proper unlocking mechanics later.
+6. Next steps:
+   - Integrate the BigfootSelection component into the main game flow.
+   - Update the player profile to reflect the selected bigfoot.
+   - Implement bigfoot unlocking mechanics.
 
 This plan focuses on integrating the Bigfoot character selection feature into our existing app structure, ensuring consistency with our UI/UX decisions and project conventions. It leverages Zustand for state management, Chakra UI for styling, Framer Motion for animations, and our custom strings hook system for text management. By adding strings as we develop each component, we ensure that all necessary text is captured and properly aligned with the implementation. This approach provides a solid foundation that we can build upon later when we're ready to implement more advanced features like character unlocking and tutorials.

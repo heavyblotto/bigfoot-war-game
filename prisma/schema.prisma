@@ -58,6 +58,7 @@ model BigfootPlayer {
   selectedByPlayer     Player?       @relation("SelectedBigfoot")  // Add this line
 
   @@unique([playerId, bigfootId])
+  isSelected Boolean @default(false)
 }
 
 model NPCOpponent {

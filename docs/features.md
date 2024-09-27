@@ -27,22 +27,22 @@ This document outlines the features of the Bigfoot War project, including both f
      - Profile Management - implemented; need to add form to update password
    - Status: Partially Implemented
 
-4. **Bigfoot Character System**
-   - Create a database of Bigfoot characters with unique attributes
-   - Implement character selection mechanics
-   - Design character progression and leveling system
-   - Status: In Progress
-   - Implementation Plan:
-     1. Update database schema
-     2. Create CharacterSelection component
-     3. Update character store
-     4. Implement new API endpoints
-     5. Update main menu
-     6. Create character selection page
-     7. Update pre-game screen
-     8. Implement basic character unlocking
-     9. Update game logic
-     10. Update player profile
+4. **Bigfoot Player System**
+   - Database of Bigfoot characters with unique attributes
+   - Character selection mechanics
+   - Status: Implemented
+   - Implementation Details:
+     1. Updated database schema with `BigfootPlayer` model
+     2. Created `BigfootSelection` component
+     3. Implemented `bigfootPlayerStore` for state management
+     4. Created API endpoints for bigfoot player operations
+     5. Developed `useBigfootPlayer` hook for easy access to functionality
+   - Next Steps:
+     1. Implement character progression and leveling system
+     2. Design and implement bigfoot unlocking mechanics
+     3. Integrate bigfoot selection with battle system
+     4. Update player profile to showcase selected bigfoot
+     5. Implement bigfoot customization features
 
 5. **Card Game Engine**
    - Develop the core War card game logic
